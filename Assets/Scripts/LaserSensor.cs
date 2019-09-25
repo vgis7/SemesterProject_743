@@ -5,9 +5,10 @@ using UnityEngine;
 public class LaserSensor : MonoBehaviour{
     public float rotationSpeed = 20f;
     public Vector3[] hitposition;
+    private LineRenderer visibleRaycast;
 
     void Start(){
-        
+        visibleRaycast = GetComponent<LineRenderer>();
     }
 
     void Update(){
@@ -24,8 +25,14 @@ public class LaserSensor : MonoBehaviour{
         RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.up),out hit, 100f)){
             print("Hit Position: "+hit.point);
-            //print("Distance: "+hit.distance);
-            Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.up)*100,Color.red);
+
+
+            //Make line from sensor to hit position of raycast
+            var points = new Vector3[2];
+            points[0] = Vector3.zero;
+            points[1] =  hit.point;
+            visibleRaycast.SetPositions(points);
+            //Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.up)*100,Color.red);
             
         }else{
             Debug.DrawRay(transform.position,transform.TransformDirection(Vector3.up)*100,Color.yellow);
