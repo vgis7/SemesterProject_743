@@ -670,7 +670,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
-  hitposition: []
+  numberOfDetectedPoints: 0
+  hitposition:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!65 &2011805553
 BoxCollider:
   m_ObjectHideFlags: 0
