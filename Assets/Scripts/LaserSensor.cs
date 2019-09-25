@@ -14,10 +14,10 @@ public class LaserSensor : MonoBehaviour{
         numberOfDetectedPoints = 5; 
         hitcounter = 0;
         visibleRaycast = GetComponent<LineRenderer>();
+        arrayOfHitPositions = new Vector2[numberOfDetectedPoints];
     }
 
     void Update(){
-        arrayOfHitPositions = new Vector2[numberOfDetectedPoints];
         RotateSensor();
         LaserRaycast(); 
     }
@@ -30,12 +30,13 @@ public class LaserSensor : MonoBehaviour{
     private void LaserRaycast(){
         RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.up),out hit, 100f)){
+            //Array of hit positions
             arrayOfHitPositions[hitcounter] = hit.point;
             hitcounter++;
             if(hitcounter >= numberOfDetectedPoints){
                 hitcounter = 0;
             }
-            print("Hit Position: "+hit.point);
+            ///print("Hit Position: "+hit.point);
 
             //Make line from sensor to hit position of raycast
             var points = new Vector3[2];
