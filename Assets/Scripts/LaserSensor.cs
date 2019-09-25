@@ -31,7 +31,7 @@ public class LaserSensor : MonoBehaviour{
         RaycastHit hit;
         if(Physics.Raycast(transform.position,transform.TransformDirection(Vector3.up),out hit, 100f)){
             //Array of hit positions
-            arrayOfHitPositions[hitcounter] = hit.point;
+            arrayOfHitPositions[hitcounter] = new Vector2(hit.point.y, hit.point.z);
             hitcounter++;
             if(hitcounter >= numberOfDetectedPoints){
                 hitcounter = 0;
