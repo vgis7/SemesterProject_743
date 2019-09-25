@@ -32,6 +32,7 @@ public class Window_Graph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("LS: " + LS.arrayOfHitPositions[0]);
         CreatePoint((LS.arrayOfHitPositions[0]));
     }
 }
