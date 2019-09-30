@@ -11,13 +11,14 @@ public class LaserSensor : MonoBehaviour{
     private LineRenderer visibleRaycast;
 
     void Start(){
+
         numberOfDetectedPoints = 5; 
         hitcounter = 0;
         visibleRaycast = GetComponent<LineRenderer>();
         arrayOfHitPositions = new Vector2[numberOfDetectedPoints];
     }
 
-    void Update(){
+    void FixedUpdate(){
         RotateSensor();
         LaserRaycast(); 
     }

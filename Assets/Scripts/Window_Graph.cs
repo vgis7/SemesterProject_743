@@ -8,6 +8,7 @@ public class Window_Graph : MonoBehaviour
     
     private RectTransform graphContainer;
     [SerializeField] private Sprite circleSprite;
+
     private void Awake() {
         graphContainer = transform.Find("GraphContainer").GetComponent<RectTransform>();
     }
@@ -21,9 +22,6 @@ public class Window_Graph : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(10,10);
         //rectTransform.anchorMin = new Vector2(0,0);
         //rectTransform.anchorMax = new Vector2(0,0);
-        
-
-
     }
     // Start is called before the first frame update
     void Start()
@@ -32,10 +30,17 @@ public class Window_Graph : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //print("LS: " + LS.arrayOfHitPositions[0]);
         //LaserSensorGameObj.GetComponent<LaserSensor>().arrayOfHitPositions[0];
         CreatePoint(LaserSensorGameObj.GetComponent<LaserSensor>().arrayOfHitPositions[0]);
+
+        if(transform.Find("GraphContainer").childCount > 150){
+            GameObject tempGameObject = transform.Find("GraphContainer").GetChild(1).gameObject;
+            Destroy(tempGameObject); 
+            //Destroy(transform.Find("GraphContainer").GetChild(1));
+            //print(transform.Find("GraphContainer").childCount);
+        }
     }
 }
