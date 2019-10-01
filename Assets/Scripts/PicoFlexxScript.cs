@@ -10,7 +10,6 @@ public class PicoFlexxScript : MonoBehaviour{
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
-
     }
 
     void Update(){
@@ -25,6 +24,7 @@ public class PicoFlexxScript : MonoBehaviour{
         for(int y = 0;y<rowAmount;y++){
             for(int x = 0; x<columnAmount;x++){
                 Ray newRay = picoFlexCamera.ScreenPointToRay(new Vector3(x*10,y*10,0));
+                
                 rayArray[x,y]= newRay;
             }
         }
@@ -41,9 +41,9 @@ public class PicoFlexxScript : MonoBehaviour{
                 Vector2 rayID = new Vector2(x, y);
                 if (Physics.Raycast(currentRay,out hit)){
                     //Debug.DrawRay(currentRay.origin,currentRay.direction*2,Color.red);
-                    pointCloud.SetPointPosition(rayID,hit.point,hit.distance);
+                    pointCloud.SetPointPosition(rayID,hit.point,true);
                 }else{
-                    pointCloud.SetPointPosition(rayID, new Vector3(100f,0f,0f));
+                    pointCloud.SetPointPosition(rayID,hit.point,false);
                 }
             }
         }

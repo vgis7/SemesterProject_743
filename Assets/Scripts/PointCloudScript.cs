@@ -25,17 +25,17 @@ public class PointCloudScript : MonoBehaviour{
         
     }
 
-    public void SetPointPosition(Vector2 rayID,Vector3 hitPosition){
+    public void SetPointPosition(Vector2 rayID,Vector3 hitPosition,bool isPointHit){
         int x = (int) rayID.x;
         int y = (int) rayID.y;
-        pointArray[x,y].transform.position = pointsContainer.position+hitPosition;
-    }
 
-    public void SetPointPosition(Vector2 rayID, Vector3 hitPosition,float distanceFromCameraToImpact){
-        int x = (int)rayID.x;
-        int y = (int)rayID.y;
-        pointArray[x,y].transform.position = pointsContainer.position + hitPosition;
-        //Color newColor = Color.HSVToRGB(Mathf.Clamp(distanceFromCameraToImpact-2,0f,0.7f), 1f,1f);
-        //pointArray[x,y].GetComponent<Renderer>().material.SetColor("_Color",newColor);
+        Vector3 point_pos = pointArray[x,y].transform.position;
+        if(isPointHit){ 
+            pointArray[x,y].transform.position = pointsContainer.position+hitPosition;
+        }else{
+            if(point_pos != new Vector3(100f,0,0)){
+                point_pos = new Vector3(100f,0,0);
+            }
+        }
     }
 }
