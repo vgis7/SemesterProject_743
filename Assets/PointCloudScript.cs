@@ -5,7 +5,7 @@ using UnityEngine;
 public class PointCloudScript : MonoBehaviour{
     Transform pointsContainer;
     public GameObject pointPrefab;
-    GameObject[,] pointArray = new GameObject[Screen.width/5,Screen.height/5];
+    GameObject[,] pointArray = new GameObject[Screen.width/10,Screen.height/10];
 
     void Start(){
         pointsContainer = this.transform.Find("PointsContainer");
@@ -35,7 +35,7 @@ public class PointCloudScript : MonoBehaviour{
         int x = (int)rayID.x;
         int y = (int)rayID.y;
         pointArray[x,y].transform.position = pointsContainer.position + hitPosition;
-        Color newColor = Color.HSVToRGB(Mathf.Clamp(distanceFromCameraToImpact-2,0f,0.7f), 1f,1f);
-        pointArray[x,y].GetComponent<Renderer>().material.SetColor("_Color",newColor);
+        //Color newColor = Color.HSVToRGB(Mathf.Clamp(distanceFromCameraToImpact-2,0f,0.7f), 1f,1f);
+        //pointArray[x,y].GetComponent<Renderer>().material.SetColor("_Color",newColor);
     }
 }
