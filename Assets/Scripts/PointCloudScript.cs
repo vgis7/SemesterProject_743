@@ -29,13 +29,15 @@ public class PointCloudScript : MonoBehaviour{
         int x = (int) rayID.x;
         int y = (int) rayID.y;
 
-        Vector3 point_pos = pointArray[x,y].transform.position;
+        //Vector3 point_pos = pointArray[x,y].transform.position;
         if(isPointHit){ 
+            pointArray[x,y].SetActive(true);
             pointArray[x,y].transform.position = pointsContainer.position+hitPosition;
         }else{
-            if(point_pos != new Vector3(100f,0,0)){
+            pointArray[x,y].SetActive(false);
+            /*if(point_pos != new Vector3(100f,0,0)){
                 point_pos = new Vector3(100f,0,0);
-            }
+            }*/
         }
     }
 }

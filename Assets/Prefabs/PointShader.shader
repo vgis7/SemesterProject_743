@@ -16,7 +16,7 @@
 			fixed4 _Color;
 
 			fixed4 frag() : SV_Target{
-				return _Color; // just return it
+				return _Color;
 			}
 			ENDCG
 		}
