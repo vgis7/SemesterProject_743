@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PointCloudScript : MonoBehaviour{
+    public SceneSettings sceneSettings;
     Transform pointsContainer;
     public GameObject pointPrefab;
-    GameObject[,] pointArray = new GameObject[Screen.width/10,Screen.height/10];
+    GameObject[,] pointArray;
 
     void Start(){
+
+        pointArray = new GameObject[Screen.width/sceneSettings.rayDivideByScreenSize,Screen.height/sceneSettings.rayDivideByScreenSize];
+        InitializePoints();
+    }
+    
+    void Update(){
+        
+    }
+
+    private void InitializePoints(){
         pointsContainer = this.transform.Find("PointsContainer");
 
         int columnAmount = pointArray.GetLength(0); //X
@@ -20,24 +31,16 @@ public class PointCloudScript : MonoBehaviour{
             }
         }
     }
-    
-    void Update(){
-        
-    }
 
     public void SetPointPosition(Vector2 rayID,Vector3 hitPosition,bool isPointHit){
         int x = (int) rayID.x;
         int y = (int) rayID.y;
-
-        //Vector3 point_pos = pointArray[x,y].transform.position;
+        
         if(isPointHit){ 
             pointArray[x,y].SetActive(true);
             pointArray[x,y].transform.position = pointsContainer.position+hitPosition;
         }else{
             pointArray[x,y].SetActive(false);
-            /*if(point_pos != new Vector3(100f,0,0)){
-                point_pos = new Vector3(100f,0,0);
-            }*/
         }
     }
 }

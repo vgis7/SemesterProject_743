@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PicoFlexxScript : MonoBehaviour{
 
+    public SceneSettings sceneSettings;
     Camera picoFlexCamera;
     public PointCloudScript pointCloud;
-    Ray[,] rayArray = new Ray[Screen.width/10,Screen.height/10];
+    Ray[,] rayArray;
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
+        rayArray = new Ray[Screen.width/sceneSettings.rayDivideByScreenSize,Screen.height/sceneSettings.rayDivideByScreenSize];
     }
 
     void Update(){
@@ -23,7 +25,7 @@ public class PicoFlexxScript : MonoBehaviour{
 
         for(int y = 0;y<rowAmount;y++){
             for(int x = 0; x<columnAmount;x++){
-                Ray newRay = picoFlexCamera.ScreenPointToRay(new Vector3(x*10,y*10,0));
+                Ray newRay = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.rayDivideByScreenSize,y*sceneSettings.rayDivideByScreenSize,0));
                 
                 rayArray[x,y]= newRay;
             }
@@ -47,5 +49,6 @@ public class PicoFlexxScript : MonoBehaviour{
                 }
             }
         }
+
     }
 }

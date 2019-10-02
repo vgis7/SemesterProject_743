@@ -26,7 +26,15 @@
 
 			fixed4 frag(v2f i) : SV_Target{
 				float invert = 1 - i.depth;
-				return fixed4(invert, 0, 1-invert, 1);
+				fixed4 colorRed = fixed4(1, 0, 0, 1);
+				fixed4 colorGreen = fixed4(0, 1, 0, 1);
+				fixed4 colorBlue = fixed4(0, 0, 1, 1);
+				float middle = 0.5;
+				fixed4 newColor = lerp(colorBlue, colorGreen, invert / middle)*step(invert, middle);
+				newColor += lerp(colorGreen, colorRed, (invert - middle) / (1 - middle))*step(middle, invert);
+				newColor.a = 1;
+
+				return newColor;
 			}
 			ENDCG
 		}
