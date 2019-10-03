@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointCloudScript : MonoBehaviour{
+public class PointCloudOLD : MonoBehaviour{
     public SceneSettings sceneSettings;
     Transform pointsContainer;
     public GameObject pointPrefab;

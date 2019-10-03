@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PicoFlexxScript : MonoBehaviour{
+public class PicoFlexxSensorOLD : MonoBehaviour{
 
     public SceneSettings sceneSettings;
     Camera picoFlexCamera;
-    public PointCloudScript pointCloud;
+    public PointCloudOLD pointCloud;
     Ray[,] rayArray;
 
     void Start(){

@@ -364,7 +364,6 @@ GameObject:
   - component: {fileID: 612460175}
   - component: {fileID: 612460174}
   - component: {fileID: 612460173}
-  - component: {fileID: 612460177}
   - component: {fileID: 612460178}
   - component: {fileID: 612460179}
   m_Layer: 0
@@ -449,20 +448,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &612460177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612460172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff9bafee05d81f4eb311a600ae5cbb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneSettings: {fileID: 680629627}
-  pointCloud: {fileID: 1561656286}
 --- !u!114 &612460178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,7 +467,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612460172}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1cb8757119f8dc4abe909e81e244dab, type: 3}
   m_Name: 
@@ -518,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62aff463438181940a0bc6053a01343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDivideByScreenSize: 25
+  rayDivideByScreenSize: 5
 --- !u!4 &680629628
 Transform:
   m_ObjectHideFlags: 0
@@ -769,7 +754,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b2bc019df535e0246bdb1c92f87238a6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1066,7 +1051,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5626,8 +5611,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217192968}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -0.34415793, z: 5.8600006}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: -0.34415784, z: 5.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1284219894}
@@ -5675,9 +5660,9 @@ Camera:
   m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
-  m_SensorSize: {x: 68, y: 17}
+  m_SensorSize: {x: 4.6, y: 5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 46.08631
+  m_FocalLength: 6.868694
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -5686,7 +5671,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 2
-  field of view: 20.9
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -5809,7 +5794,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561656285}
-  - component: {fileID: 1561656286}
   - component: {fileID: 1561656287}
   m_Layer: 0
   m_Name: PointCloud
@@ -5834,21 +5818,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1561656286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561656284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb7a198aa38106a44b0bdc632c4ff616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneSettings: {fileID: 680629627}
-  pointPrefab: {fileID: 8884692527206563742, guid: 00fbf9cf4f0b3c94aacb4298f6a702d9,
-    type: 3}
 --- !u!114 &1561656287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5856,7 +5825,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561656284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 389a8ca0162f6844a972cb8d975da349, type: 3}
   m_Name: 
@@ -5925,9 +5894,9 @@ Camera:
   m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
-  m_SensorSize: {x: 68, y: 17}
+  m_SensorSize: {x: 4.6, y: 5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 46.08631
+  m_FocalLength: 6.868694
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -5936,7 +5905,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 2
-  field of view: 20.9
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

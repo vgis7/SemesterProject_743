@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PicoFlexxParticleScript : MonoBehaviour{
+public class PicoFlexxSensor : MonoBehaviour{
 
     public SceneSettings sceneSettings;
     public PointCloud pointCloud;
@@ -22,8 +22,8 @@ public class PicoFlexxParticleScript : MonoBehaviour{
 
     private void CastRays(){
         int indexCounter = 0;
-        for(int y = 0; y<Screen.width/sceneSettings.rayDivideByScreenSize;y++){
-            for(int x = 0; x<Screen.height/sceneSettings.rayDivideByScreenSize;x++){
+        for(int y = 0; y<Screen.height/sceneSettings.rayDivideByScreenSize;y++){
+            for(int x = 0; x<Screen.width/sceneSettings.rayDivideByScreenSize;x++){
                 rayArray[indexCounter] = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.rayDivideByScreenSize,y*sceneSettings.rayDivideByScreenSize,0));
                 indexCounter++;
             }
@@ -36,6 +36,8 @@ public class PicoFlexxParticleScript : MonoBehaviour{
         for(int i = 0; i < rayArray.Length;i++){
             if(Physics.Raycast(rayArray[i],out hit)){
                 hitPositions[i] = hit.point;
+            }else{
+                hitPositions[i] = new Vector3(0,-10,0);
             }
         }
         return hitPositions;
