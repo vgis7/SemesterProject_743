@@ -456,13 +456,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612460172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ff9bafee05d81f4eb311a600ae5cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneSettings: {fileID: 680629627}
-  pointCloud: {fileID: 0}
+  pointCloud: {fileID: 1561656286}
 --- !u!114 &612460178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62aff463438181940a0bc6053a01343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pixelsEachRayCovers: 10
+  pixelsEachRayCovers: 5
 --- !u!4 &680629628
 Transform:
   m_ObjectHideFlags: 0
@@ -809,7 +809,7 @@ ParticleSystemRenderer:
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -5646,6 +5646,7 @@ GameObject:
   - component: {fileID: 1284219893}
   - component: {fileID: 1284219892}
   - component: {fileID: 1284219896}
+  - component: {fileID: 1284219895}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -5685,7 +5686,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 2
+  far clip plane: 4
   field of view: 40
   orthographic: 0
   orthographic size: 5
@@ -5718,6 +5719,18 @@ Transform:
   m_Father: {fileID: 1217192970}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1284219895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284219891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81acab0b086f5c041af80be24032dacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1284219896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5756,7 +5769,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
@@ -5766,7 +5779,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.69222045
+      value: 0.70815647
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
@@ -5776,7 +5789,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7216861
+      value: 0.70605564
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
@@ -5791,7 +5804,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.61201
+      value: 90.170006
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c5e0852dacd6b4f679b1f4fbc5663b8d,
         type: 3}
@@ -5841,7 +5854,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561656284}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb7a198aa38106a44b0bdc632c4ff616, type: 3}
   m_Name: 
@@ -5935,7 +5948,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 2
+  far clip plane: 4
   field of view: 40
   orthographic: 0
   orthographic size: 5
