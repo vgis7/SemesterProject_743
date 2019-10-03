@@ -10,7 +10,7 @@ public class PointCloudOLD : MonoBehaviour{
 
     void Start(){
 
-        pointArray = new GameObject[Screen.width/sceneSettings.rayDivideByScreenSize,Screen.height/sceneSettings.rayDivideByScreenSize];
+        pointArray = new GameObject[Screen.width/sceneSettings.pixelsEachRayCovers,Screen.height/sceneSettings.pixelsEachRayCovers];
         InitializePoints();
     }
     

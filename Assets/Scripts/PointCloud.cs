@@ -26,7 +26,7 @@ public class PointCloud : MonoBehaviour{
             particles = new ParticleSystem.Particle[rayHitPositions.Length];
             particleSystem.emission.SetBursts(
             new ParticleSystem.Burst[]{
-                new ParticleSystem.Burst(0.0f,(Screen.width/sceneSettings.rayDivideByScreenSize)*(Screen.height/sceneSettings.rayDivideByScreenSize))
+                new ParticleSystem.Burst(0.0f,(Screen.width/sceneSettings.pixelsEachRayCovers)*(Screen.height/sceneSettings.pixelsEachRayCovers))
             });
         }
         

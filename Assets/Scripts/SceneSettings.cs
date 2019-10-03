@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneSettings : MonoBehaviour{
-    public int rayDivideByScreenSize = 10;
+    public int pixelsEachRayCovers = 10;
 
     void Start(){
     }
