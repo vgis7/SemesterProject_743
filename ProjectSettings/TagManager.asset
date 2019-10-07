@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Point
   - Pointxx
+  - Defect
+  - Point
   layers:
   - Default
   - TransparentFX

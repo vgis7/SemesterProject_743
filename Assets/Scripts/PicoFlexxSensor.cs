@@ -9,15 +9,30 @@ public class PicoFlexxSensor : MonoBehaviour{
     Camera picoFlexCamera;
     Ray[] rayArray;
 
+    bool foundDefect;
+    public DataGenerator dataGenerator;
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
         rayArray = new Ray[(sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers)*(sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers)];
+
+        foundDefect = false;
     }
 
     void Update(){
-        CastRays();
-        pointCloud.SetAllParticlesPositions(GetRayHitPositions());
+        if(sceneSettings.beginSimulation){
+            CastRays();
+            pointCloud.SetAllParticlesPositions(GetRayHitPositions());
+            MoveCamera();
+        }
+    }
+
+    private void MoveCamera(){
+        bool imageTaken = dataGenerator.GenerateImage(foundDefect);
+        if(imageTaken){
+            foundDefect = false;
+            this.gameObject.transform.Translate(Vector3.left*0.05f);
+        }
     }
 
     private void CastRays(){
@@ -35,6 +50,11 @@ public class PicoFlexxSensor : MonoBehaviour{
         RaycastHit hit;
         for(int i = 0; i < rayArray.Length;i++){
             if(Physics.Raycast(rayArray[i],out hit)){
+                if(hit.transform.gameObject.tag == "Defect" && foundDefect == false){
+                    foundDefect = true;
+                    print("FOUND DEFECT");
+                }
+
                 //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*2,Color.red);
                 hitPositions[i] = hit.point;
             }else{
