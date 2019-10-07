@@ -12,7 +12,7 @@ public class PicoFlexxSensor : MonoBehaviour{
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
-        rayArray = new Ray[(Screen.width/sceneSettings.pixelsEachRayCovers)*(Screen.height/sceneSettings.pixelsEachRayCovers)];
+        rayArray = new Ray[(sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers)*(sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers)];
     }
 
     void Update(){
@@ -22,8 +22,8 @@ public class PicoFlexxSensor : MonoBehaviour{
 
     private void CastRays(){
         int indexCounter = 0;
-        for(int y = 0; y<Screen.height/sceneSettings.pixelsEachRayCovers;y++){
-            for(int x = 0; x<Screen.width/sceneSettings.pixelsEachRayCovers;x++){
+        for(int y = 0; y<sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers;y++){
+            for(int x = 0; x<sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers;x++){
                 rayArray[indexCounter] = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.pixelsEachRayCovers,y*sceneSettings.pixelsEachRayCovers,0));
                 indexCounter++;
             }

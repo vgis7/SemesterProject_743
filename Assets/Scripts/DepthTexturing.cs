@@ -5,7 +5,8 @@ using UnityEngine;
 public class DepthTexturing : MonoBehaviour{
     public Shader shader;
     void Start(){
-        Camera.main.SetReplacementShader(shader,"RenderType");
+        this.transform.GetComponent<Camera>().SetReplacementShader(shader,"RenderType");
+
     }
     
     void Update(){
