@@ -8,25 +8,25 @@ public class DataGenerator : MonoBehaviour{
     public Camera data_camera;
     public Camera UI_camera;
 
-    private int numberOfImagesFine, numberOfImagesDefects;
+    public int numberOfImagesFine, numberOfImagesDefect;
 
     void Start(){
         incrementImageID = 0;
-        sceneSettings = this.transform.GetComponent<SceneSettings>();
-        
+        sceneSettings = this.transform.GetComponent<SceneSettings>();   
     }
 
-    void Update(){
-    }
-
+    /// <summary>
+    /// Generates Image from the pointcloud camera by rendering the camera and then writes the image to the desired path.
+    /// This function is called in PicoFlexxSensor.
+    /// </summary>
+    /// <param name="foundDefect"></param>
+    /// <returns>Returns true if image is written successfully or enough images of a label has been created. Has to return true, else the camera will not move forward. </returns>
     public bool GenerateImage(bool foundDefect){
-        string temp_path = "";
-        if(foundDefect == true){
-            temp_path = sceneSettings.directory_path+"/Defect";
-        }else{
-            temp_path = sceneSettings.directory_path+"/Fine";
-        }
+        ///Obtain Path
+        string path = ObtainPathDependingOnFoundDefect(foundDefect);
+        if(path == "Done"){return true;}; ///Returns true, if the desired number of images has been created already.
 
+        ///Rendering Part
         RenderTexture renderTexture = new RenderTexture(sceneSettings.imageWidth, sceneSettings.imageHeight, 24);
         data_camera.targetTexture = renderTexture;
         Texture2D screenShot = new Texture2D(sceneSettings.imageWidth, sceneSettings.imageHeight, TextureFormat.RGB24, false);
@@ -37,31 +37,42 @@ public class DataGenerator : MonoBehaviour{
         RenderTexture.active = null; // JC: added to avoid errors
         Destroy(renderTexture);
         byte[] bytes = screenShot.EncodeToPNG();
-        print(temp_path+"/screenshot"+incrementImageID+".png");
-        System.IO.File.WriteAllBytes(temp_path+"/screenshot"+incrementImageID+".png", bytes);
+        System.IO.File.WriteAllBytes(path + "/screenshot"+incrementImageID+".png", bytes);
         incrementImageID++;
         return true;
     }
 
+    /// <summary>
+    /// Check if a defect is found or not, which will return a path based on the value. 
+    /// Moreover, if the desired number of images for a label is obtained, it will return "Done", which is used for skipping the rendering part.
+    /// </summary>
+    /// <param name="foundDefect"></param>
+    /// <returns></returns>
+    private string ObtainPathDependingOnFoundDefect(bool foundDefect){
+        string path = "";
+        if (foundDefect == true) {
+            path = sceneSettings.directory_path + "/Defect";
+            if (numberOfImagesDefect <= 0) {
+                return "Done";
+            }
+            numberOfImagesDefect--;
+        } else {
+            path = sceneSettings.directory_path + "/Fine";
+            if (numberOfImagesFine <= 0) {
+                return "Done";
+            }
+            numberOfImagesFine--;
+        }
+        return path;
+    }
+
+    /// <summary>
+    /// Sets the number of images for fine and defects.
+    /// </summary>
+    /// <param name="temp_numberOfImagesFine"></param>
+    /// <param name="temp_numberOfImagesDefects"></param>
     public void SetNumberOfDesiredImages(int temp_numberOfImagesFine, int temp_numberOfImagesDefects){
         numberOfImagesFine = temp_numberOfImagesFine;
-        numberOfImagesDefects = temp_numberOfImagesDefects;
+        numberOfImagesDefect = temp_numberOfImagesDefects;
     }
-    /*
-    public void GenerateImages(int numberOfImages){
-        for(int i = 0; i < numberOfImages;i++){
-            RenderTexture renderTexture = new RenderTexture(sceneSettings.imageWidth, sceneSettings.imageHeight, 24);
-            data_camera.targetTexture = renderTexture;
-            Texture2D screenShot = new Texture2D(sceneSettings.imageWidth, sceneSettings.imageHeight, TextureFormat.RGB24, false);
-            data_camera.Render();
-            RenderTexture.active = renderTexture;
-            screenShot.ReadPixels(new Rect(0, 0, sceneSettings.imageWidth, sceneSettings.imageHeight), 0, 0);
-            data_camera.targetTexture = null;
-            RenderTexture.active = null; // JC: added to avoid errors
-            Destroy(renderTexture);
-            byte[] bytes = screenShot.EncodeToPNG();
-            System.IO.File.WriteAllBytes(sceneSettings.directory_path+"/screenshot"+incrementImageID+".png", bytes);
-            incrementImageID++;
-        }
-    }*/
 }
