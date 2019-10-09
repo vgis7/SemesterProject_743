@@ -34,7 +34,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         }
         if(imageTaken){
             foundDefect = false;
-            float walklength = 0.005f;
+            float walklength = 0.05f;
             this.gameObject.transform.Translate(Vector3.left* walklength);
         }
     }
