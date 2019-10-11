@@ -12,15 +12,32 @@ public class PicoFlexxSensor : MonoBehaviour{
     bool foundDefect;
     public DataGenerator dataGenerator;
 
+    Vector3[] directions;
+
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
         rayArray = new Ray[(sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers)*(sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers)]; ///Size of the ray
         foundDefect = false;
+        directions = null;
+    }
+
+    
+
+    public struct Point{
+        public Vector3 direction;
+        public float distance;
     }
 
     void Update(){
         CastRays();
-        pointCloud.SetAllParticlesPositions(GetRayHitPositions()); ///Sends the ray hit positions towards the point cloud, that transforms the position of each particle inside the pointcloud to these hit positions.
+        //pointCloud.SetAllParticlesPositions(GetRayHitPositions()); ///Sends the ray hit positions towards the point cloud, that transforms the position of each particle inside the pointcloud to these hit positions.
+        Point[] points = GetRayHitPointStruct();
+        float[] distance = GetDistanceFromPointStruct(points);
+        if(directions == null){
+            directions = GetDirectionsFromPointStruct(points);
+        }
+        
+        pointCloud.SetAllParticlesPositions(picoFlexCamera.transform.position,directions,distance);
         TakeScreenShotAndMoveCamera();
     }
 
@@ -68,12 +85,50 @@ public class PicoFlexxSensor : MonoBehaviour{
                 }
                 ///Saves the position of each ray hit
                 hitPositions[i] = hit.point;
-                ///Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*2,Color.red); ///DEBUG RAY
+                ///Debug.DrawRay(rayArray[i]. ,rayArray[i].direction*2,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 hitPositions[i] = new Vector3(0,-10,0);
             }
         }
         return hitPositions;
+    }
+
+
+    Point[] GetRayHitPointStruct(){
+        Point[] points = new Point[rayArray.Length];
+        RaycastHit hit;
+        for(int i = 0; i < rayArray.Length;i++){
+            if(Physics.Raycast(rayArray[i],out hit)){
+                ///Checks for tag named defect
+                if(hit.transform.gameObject.tag == "Defect" && foundDefect == false){
+                    foundDefect = true;
+                }
+                ///Saves the position of each ray hit
+                points[i].direction = rayArray[i].direction;
+                points[i].distance = hit.distance;
+                ///Debug.DrawRay(rayArray[i]. ,rayArray[i].direction*2,Color.red); ///DEBUG RAY
+            } else {
+                ///Move particles out of the screen, if a ray has not hit.
+                points[i].direction = new Vector3(0,0,0);
+            }
+        }
+        return points;
+    }
+
+    Vector3[] GetDirectionsFromPointStruct(Point[] points){
+        Vector3[] directions = new Vector3[points.Length];
+        for(int i = 0; i<points.Length;i++){
+            directions[i] = points[i].direction;
+        }
+        return directions;
+    }
+
+    float[] GetDistanceFromPointStruct(Point[] points){
+        float[] distance = new float[points.Length];
+        for(int i = 0; i<points.Length;i++){
+            distance[i] = points[i].distance;
+        }
+        return distance;
     }
 }

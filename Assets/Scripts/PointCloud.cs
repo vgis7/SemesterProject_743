@@ -50,4 +50,38 @@ public class PointCloud : MonoBehaviour{
 
         particleSystem.SetParticles(particles,particles.Length);
     }
+
+    struct Point{
+        public Vector3 direction;
+        public float distance;
+    }
+
+    /// <summary>
+    /// Takes the origin of the camera, direction of where each ray and distance from camera to hit as parameter and then translates each particle to that position.
+    /// Called from PicoFlexxSensor.
+    /// </summary>
+    /// <param name="rayHitPositions"></param>
+    public void SetAllParticlesPositions(Vector3 cameraOrigin,Vector3[] direction,float[] distance){
+        if(particleSystem.particleCount == 0){
+            particles = new ParticleSystem.Particle[direction.Length];
+            particleSystem.emission.SetBursts(
+            new ParticleSystem.Burst[]{
+                new ParticleSystem.Burst(0.0f,(sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers)*(sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers ))
+            });
+        }
+
+        int particlesAlive = particleSystem.GetParticles(particles);
+        
+        for (int i = 0; i < particlesAlive; i++){
+            if(direction[i] == new Vector3(0,0,0)){
+                particles[i].position = new Vector3(0,0,0);
+                continue;
+            }
+
+            particles[i].position = cameraOrigin+direction[i]*(distance[i]*Random.Range(0.9f,1.1f));
+            particles[i].remainingLifetime = 100;
+        }
+
+        particleSystem.SetParticles(particles,particles.Length);
+    }
 }
