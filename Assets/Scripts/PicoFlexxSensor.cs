@@ -94,7 +94,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         return hitPositions;
     }
 
-
+    bool test = false;
     Point[] GetRayHitPointStruct(){
         Point[] points = new Point[rayArray.Length];
         RaycastHit hit;
@@ -107,6 +107,17 @@ public class PicoFlexxSensor : MonoBehaviour{
                 ///Saves the position of each ray hit
                 points[i].direction = rayArray[i].direction;
                 points[i].distance = hit.distance;
+
+                if(test == false){
+                    Texture2D texmap = (Texture2D)hit.transform.GetComponent<Renderer>().material.mainTexture;
+                    Vector2 pixelUV = hit.textureCoord;
+                    pixelUV.x = texmap.width;
+                    pixelUV.y = texmap.height;
+
+                    print(texmap.GetPixel((int)pixelUV.x,(int)pixelUV.y));
+                    test = true;
+                }
+
                 ///Debug.DrawRay(rayArray[i]. ,rayArray[i].direction*2,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.

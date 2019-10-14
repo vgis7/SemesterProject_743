@@ -95,8 +95,8 @@ public class UserInterface : MonoBehaviour{
     /// Moreover, this function activates the simulation and sets the max value for the progressbar.
     /// </summary>
     public void ButtonPressGenerate(){
-        dataGenerator.SetNumberOfDesiredImages(numberOfImagesFine,numberOfImagesDefect);
         picoFlexx.SetActive(true);
+        dataGenerator.SetNumberOfDesiredImages(numberOfImagesFine,numberOfImagesDefect);
         progressBar.maxValue = numberOfImagesTotal;
     }
 
