@@ -94,31 +94,24 @@ public class PicoFlexxSensor : MonoBehaviour{
         return hitPositions;
     }
 
-    bool test = false;
     Point[] GetRayHitPointStruct(){
         Point[] points = new Point[rayArray.Length];
+
         RaycastHit hit;
         for(int i = 0; i < rayArray.Length;i++){
-            if(Physics.Raycast(rayArray[i],out hit)){
+            if(Physics.Raycast(rayArray[i],out hit,5)){
                 ///Checks for tag named defect
                 if(hit.transform.gameObject.tag == "Defect" && foundDefect == false){
                     foundDefect = true;
                 }
+
                 ///Saves the position of each ray hit
                 points[i].direction = rayArray[i].direction;
-                points[i].distance = hit.distance;
 
-                if(test == false){
-                    Texture2D texmap = (Texture2D)hit.transform.GetComponent<Renderer>().material.mainTexture;
-                    Vector2 pixelUV = hit.textureCoord;
-                    pixelUV.x = texmap.width;
-                    pixelUV.y = texmap.height;
-
-                    print(texmap.GetPixel((int)pixelUV.x,(int)pixelUV.y));
-                    test = true;
-                }
-
-                ///Debug.DrawRay(rayArray[i]. ,rayArray[i].direction*2,Color.red); ///DEBUG RAY
+                ///Checks if pixel includes defect
+                float defectAmount = CheckIfPixelDefectAtHitUVCoordinate(hit);
+                points[i].distance = hit.distance + defectAmount;
+                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*2,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 points[i].direction = new Vector3(0,0,0);
@@ -127,6 +120,11 @@ public class PicoFlexxSensor : MonoBehaviour{
         return points;
     }
 
+    /// <summary>
+    /// Takes the directions from the point struct and returns a new array of directions.
+    /// </summary>
+    /// <param name="points"></param>
+    /// <returns></returns>
     Vector3[] GetDirectionsFromPointStruct(Point[] points){
         Vector3[] directions = new Vector3[points.Length];
         for(int i = 0; i<points.Length;i++){
@@ -135,11 +133,33 @@ public class PicoFlexxSensor : MonoBehaviour{
         return directions;
     }
 
+    /// <summary>
+    /// Takes the distance from the point struct and returns a new array of distances.
+    /// </summary>
+    /// <param name="points"></param>
+    /// <returns></returns>
     float[] GetDistanceFromPointStruct(Point[] points){
         float[] distance = new float[points.Length];
         for(int i = 0; i<points.Length;i++){
             distance[i] = points[i].distance;
         }
         return distance;
+    }
+
+
+    float CheckIfPixelDefectAtHitUVCoordinate(RaycastHit hit){
+        Texture2D texmap = hit.transform.GetComponent<Renderer>().material.mainTexture as Texture2D;
+        Vector2 pixelUV = hit.textureCoord;
+        pixelUV.x *= texmap.width;
+        pixelUV.y *= texmap.height;
+
+        Color normalColor = new Vector4(0, 0, 0, 1);
+        Color hitPixel = texmap.GetPixel((int)pixelUV.x, (int)pixelUV.y);
+        if (hitPixel != normalColor) {
+            float defectAmount = (hitPixel.r+hitPixel.g+hitPixel.b)/3;
+            //foundDefect = true;
+            return defectAmount;
+        }
+        return 0f;
     }
 }

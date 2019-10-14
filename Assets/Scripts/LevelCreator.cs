@@ -14,12 +14,12 @@ public class LevelCreator : MonoBehaviour{
             if(random == 0){
                 GameObject newPipe = Instantiate(pipeStraight);
                 newPipe.transform.SetParent(this.transform.Find("ObjectContainer"));
-                //newPipe.transform.Rotate(new Vector3(-90, 0, 0));
                 newPipe.transform.position = createNextObjectAtVector;
                 createNextObjectAtVector += new Vector3(0,0,3);
             }
             if(random == 1){
                 GameObject newPipe = Instantiate(pipeBend);
+                newPipe.transform.SetParent(this.transform.Find("ObjectContainer"));
                 newPipe.transform.Rotate(new Vector3(0, 0, 0));
                 newPipe.transform.position = createNextObjectAtVector;
                 createNextObjectAtVector += new Vector3(0, 0, 1.5f);
