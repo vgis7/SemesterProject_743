@@ -9,9 +9,7 @@ public class SplineCreator : MonoBehaviour{
 
     void Start(){
         lineRenderer = GetComponent<LineRenderer>();
-    }
 
-    void Update(){
         int pointPerObject = 10;
         lineRenderer.positionCount = objectContainer.transform.childCount* pointPerObject;
 
@@ -35,5 +33,8 @@ public class SplineCreator : MonoBehaviour{
                 pointCounter++;
             }
         }
+    }
+
+    void Update(){
     }
 }

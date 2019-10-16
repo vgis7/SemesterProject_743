@@ -21,8 +21,6 @@ public class PicoFlexxSensor : MonoBehaviour{
         directions = null;
     }
 
-    
-
     public struct Point{
         public Vector3 direction;
         public float distance;
@@ -33,9 +31,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         //pointCloud.SetAllParticlesPositions(GetRayHitPositions()); ///Sends the ray hit positions towards the point cloud, that transforms the position of each particle inside the pointcloud to these hit positions.
         Point[] points = GetRayHitPointStruct();
         float[] distance = GetDistanceFromPointStruct(points);
-        if(directions == null){
-            directions = GetDirectionsFromPointStruct(points);
-        }
+        directions = GetDirectionsFromPointStruct(points);
         
         pointCloud.SetAllParticlesPositions(picoFlexCamera.transform.position,directions,distance);
         TakeScreenShotAndMoveCamera();
@@ -126,11 +122,13 @@ public class PicoFlexxSensor : MonoBehaviour{
     /// <param name="points"></param>
     /// <returns></returns>
     Vector3[] GetDirectionsFromPointStruct(Point[] points){
-        Vector3[] directions = new Vector3[points.Length];
+        if(directions != null){ return directions; }
+
+        Vector3[] new_directions = new Vector3[points.Length];
         for(int i = 0; i<points.Length;i++){
-            directions[i] = points[i].direction;
+            new_directions[i] = points[i].direction;
         }
-        return directions;
+        return new_directions;
     }
 
     /// <summary>
@@ -156,7 +154,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         Color normalColor = new Vector4(0, 0, 0, 1);
         Color hitPixel = texmap.GetPixel((int)pixelUV.x, (int)pixelUV.y);
         if (hitPixel != normalColor) {
-            float defectAmount = (hitPixel.r+hitPixel.g+hitPixel.b)/3;
+            float defectAmount = ((hitPixel.r+hitPixel.g+hitPixel.b)/3);
             //foundDefect = true;
             return defectAmount;
         }
