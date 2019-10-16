@@ -154,7 +154,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         Color normalColor = new Vector4(0, 0, 0, 1);
         Color hitPixel = texmap.GetPixel((int)pixelUV.x, (int)pixelUV.y);
         if (hitPixel != normalColor) {
-            float defectAmount = ((hitPixel.r+hitPixel.g+hitPixel.b)/3);
+            float defectAmount = ((hitPixel.r+hitPixel.g+hitPixel.b)/3)+0.2f;
             //foundDefect = true;
             return defectAmount;
         }
