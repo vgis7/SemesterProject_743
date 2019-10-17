@@ -145,7 +145,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163794793}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &163794795
 Camera:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f7327e4725b45b699f781c6f85d01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToCreate: {fileID: 8259045967537392652, guid: d1954d89639f14fefa2c34521dd4f32f,
+  pipeToCreate: {fileID: 8259045967537392652, guid: d1954d89639f14fefa2c34521dd4f32f,
     type: 3}
 --- !u!4 &600142760
 Transform:
