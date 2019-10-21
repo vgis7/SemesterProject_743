@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163794793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -11.481}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -232,7 +232,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f7327e4725b45b699f781c6f85d01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pipeToCreate: {fileID: 6562274997159766877, guid: 951b357d631b930419faea9516c38154,
+  StraightPipe: {fileID: 4019781312371503006, guid: 2fd9ecb66babf5845b33b6aa54389e69,
+    type: 3}
+  Bend15Pipe: {fileID: 6562274997159766877, guid: 951b357d631b930419faea9516c38154,
+    type: 3}
+  Bend30Pipe: {fileID: 8955583701435726391, guid: 29f4a89b54c03df418257e1b9532b7ae,
+    type: 3}
+  Bend45Pipe: {fileID: 7607550257704603102, guid: 20e127a3c7e1fd54f8eac829ba46487d,
     type: 3}
 --- !u!4 &600142760
 Transform:
