@@ -22,10 +22,6 @@ public class DataGenerator : MonoBehaviour{
     /// <param name="foundDefect"></param>
     /// <returns>Returns true if image is written successfully or enough images of a label has been created. Has to return true, else the camera will not move forward. </returns>
     public bool GenerateImage(bool foundDefect){
-        ///Obtain Path
-        string path = ObtainPathDependingOnFoundDefect(foundDefect);
-        if(path == "Done"){return true;}; ///Returns true, if the desired number of images has been created already.
-
         ///Rendering Part
         RenderTexture renderTexture = new RenderTexture(sceneSettings.imageWidth, sceneSettings.imageHeight, 24);
         data_camera.targetTexture = renderTexture;
@@ -33,10 +29,23 @@ public class DataGenerator : MonoBehaviour{
         data_camera.Render();
         RenderTexture.active = renderTexture;
         screenShot.ReadPixels(new Rect(0, 0, sceneSettings.imageWidth, sceneSettings.imageHeight), 0, 0);
+
+        //Checks if pixel is black, to see if depth shader is activated yet. Bad way of to do it though.
+        if(screenShot.GetPixel(0,0)==new Color(0,0,0,1)){
+            return false;
+        }
+
+        ///Continue Rendering
         data_camera.targetTexture = null;
-        RenderTexture.active = null; // JC: added to avoid errors
+        RenderTexture.active = null; 
         Destroy(renderTexture);
         byte[] bytes = screenShot.EncodeToPNG();
+
+        ///Obtain Path
+        string path = ObtainPathDependingOnFoundDefect(foundDefect);
+        if (path == "Done") { return true; }; ///Returns true, if the desired number of images has been created already.
+
+        ///Write Image to path
         System.IO.File.WriteAllBytes(path + "/screenshot"+incrementImageID+".png", bytes);
         incrementImageID++;
         return true;

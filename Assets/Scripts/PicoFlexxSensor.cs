@@ -13,12 +13,15 @@ public class PicoFlexxSensor : MonoBehaviour{
     public DataGenerator dataGenerator;
 
     Vector3[] directions;
+    bool unsureToLabelImageAsDefect;
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
         rayArray = new Ray[(sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers)*(sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers)]; ///Size of the ray
         foundDefect = false;
         directions = null;
+        unsureToLabelImageAsDefect = true;
+        
     }
 
     public struct Point{
@@ -42,11 +45,12 @@ public class PicoFlexxSensor : MonoBehaviour{
     /// </summary>
     private void TakeScreenShotAndMoveCamera(){
         bool imageTaken = false;
-        if (pointCloud.pointCloudIsReady){
+        if (pointCloud.pointCloudIsReady && unsureToLabelImageAsDefect == false){
             imageTaken = dataGenerator.GenerateImage(foundDefect);
         }
-        if(imageTaken){
+        if(imageTaken || unsureToLabelImageAsDefect == true) {
             foundDefect = false;
+            unsureToLabelImageAsDefect = false;
             float walklength = 0.05f;
             this.gameObject.transform.Translate(Vector3.left* walklength);
         }
@@ -74,7 +78,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         Vector3[] hitPositions = new Vector3[rayArray.Length];
         RaycastHit hit;
         for(int i = 0; i < rayArray.Length;i++){
-            if(Physics.Raycast(rayArray[i],out hit)){
+            if(Physics.Raycast(rayArray[i],out hit,4)){
                 ///Checks for tag named defect
                 if(hit.transform.gameObject.tag == "Defect" && foundDefect == false){
                     foundDefect = true;
@@ -95,7 +99,7 @@ public class PicoFlexxSensor : MonoBehaviour{
 
         RaycastHit hit;
         for(int i = 0; i < rayArray.Length;i++){
-            if(Physics.Raycast(rayArray[i],out hit,5)){
+            if(Physics.Raycast(rayArray[i],out hit,4)){
                 ///Checks for tag named defect
                 if(hit.transform.gameObject.tag == "Defect" && foundDefect == false){
                     foundDefect = true;
@@ -151,11 +155,21 @@ public class PicoFlexxSensor : MonoBehaviour{
         pixelUV.x *= texmap.width;
         pixelUV.y *= texmap.height;
 
-        Color normalColor = new Vector4(0, 0, 0, 1);
+        Color nonDefectColor = new Vector4(0, 0, 0, 1);
         Color hitPixel = texmap.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-        if (hitPixel != normalColor) {
+        if (hitPixel != nonDefectColor) {
             float defectAmount = ((hitPixel.r+hitPixel.g+hitPixel.b)/3)+0.2f;
-            //foundDefect = true;
+
+            ///To make sure that the defect can be seen
+            if(hit.distance < 3){
+                foundDefect = true;
+            }
+
+            ///If defect is already close enough to be seen, don't tell the program that it's unsure of how to label the image.
+            if(foundDefect == false){
+                unsureToLabelImageAsDefect = true;
+            }
+
             return defectAmount;
         }
         return 0f;

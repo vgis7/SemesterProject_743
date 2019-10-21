@@ -42,7 +42,6 @@ public class PointCloud : MonoBehaviour{
         }
 
         int particlesAlive = particleSystem.GetParticles(particles);
-        
         for (int i = 0; i < particlesAlive; i++){
             particles[i].position = rayHitPositions[i];
             particles[i].remainingLifetime = 100;
@@ -52,8 +51,8 @@ public class PointCloud : MonoBehaviour{
     }
 
     struct Point{
-        public Vector3 direction;
-        public float distance;
+        private Vector3 direction;
+        private float distance;
     }
 
     /// <summary>
@@ -71,17 +70,21 @@ public class PointCloud : MonoBehaviour{
         }
 
         int particlesAlive = particleSystem.GetParticles(particles);
-        
         for (int i = 0; i < particlesAlive; i++){
             if(direction[i] == new Vector3(0,0,0)){
-                particles[i].position = new Vector3(0,0,0);
+                particles[i].position = new Vector3(0,10,0);
                 continue;
             }
 
             particles[i].position = cameraOrigin+direction[i]*(distance[i]*Random.Range(0.9f,1.1f));
+
+
+            if (particles[i].position == new Vector3(0, 0, 0)) {
+                particles[i].position = new Vector3(0, 10, 0);
+            }
+
             particles[i].remainingLifetime = 100;
         }
-
         particleSystem.SetParticles(particles,particles.Length);
     }
 }
