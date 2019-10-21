@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PipeSpawn : MonoBehaviour
 {
- 
+    private Vector3 WorldRotation;
     public GameObject pipeToCreate;
  void SpawnPipes(int amount) {
      GameObject newPipe = Instantiate(pipeToCreate);
-    
+     WorldRotation = newPipe.transform.rotation.eulerAngles;
      for (int i = 0; i < amount; i++)
      {
          GameObject tempPipe = SpawnObject(newPipe);
@@ -16,11 +16,16 @@ public class PipeSpawn : MonoBehaviour
      }
  }  
  GameObject SpawnObject(GameObject preObject) {
-     Vector3 startPosition = preObject.transform.Find("Start").position;  
+     //Get Head position from point
+     Vector3 startPosition = preObject.transform.Find("Head").position;   
+     WorldRotation += preObject.transform.rotation.eulerAngles;
      GameObject newPipe = Instantiate(pipeToCreate);
+        newPipe.transform.Rotate((WorldRotation),Space.Self);
      newPipe.transform.position =  startPosition;
      return newPipe; 
+     
  }
+
     void Start()
     {
         SpawnPipes(5);
