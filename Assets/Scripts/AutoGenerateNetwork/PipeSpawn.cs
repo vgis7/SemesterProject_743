@@ -25,6 +25,16 @@ public class PipeSpawn : MonoBehaviour
      return newPipe; 
      
  }
+     GameObject SpawnObject2(GameObject preObject){
+        //Get Head position from point
+        Vector3 startPosition = preObject.transform.Find("Head").position;
+        Vector3 WorldRotation = preObject.transform.rotation.eulerAngles;
+
+        GameObject newPipe = Instantiate(pipeToCreate);
+        newPipe.transform.position = startPosition;
+        newPipe.transform.Rotate(WorldRotation + new Vector3(0,15,0), Space.World);
+        return newPipe;
+    }
 
     void Start()
     {
