@@ -161,7 +161,8 @@ public class PicoFlexxSensor : MonoBehaviour{
             float defectAmount = ((hitPixel.r+hitPixel.g+hitPixel.b)/3)+0.2f;
 
             ///To make sure that the defect can be seen
-            if(hit.distance < 3){
+            /////REALLY IMPORTANT TO CHANGE//////
+            if(hit.distance < 3 && hit.distance > 1f){
                 foundDefect = true;
             }
 
