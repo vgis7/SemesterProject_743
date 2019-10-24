@@ -7,7 +7,10 @@ public class PipeSpawn : MonoBehaviour
 {
     int preState = 0;
     public LineRenderer lineRenderer;
+    public int AmountOfPipes = 10;
     public GameObject StraightPipe,Bend15Pipe,Bend30Pipe,Bend45Pipe,Bend15PipeR,Bend30PipeR,Bend45PipeR;
+
+    public moveCamera MoveCamera;
 
     Vector3[] SpawnPipes(int amount) {
         int amountOfPoints= 5+((amount)*4);
@@ -148,8 +151,9 @@ public class PipeSpawn : MonoBehaviour
 
     void Start()
     {
-        Vector3[] LP = SpawnPipes(5);
+        Vector3[] LP = SpawnPipes(AmountOfPipes);
         lineRenderer.SetPositions(LP);
+        MoveCamera.moveTheCamera(LP);
         Debug.Log(LP);
     }
 
