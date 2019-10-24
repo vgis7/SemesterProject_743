@@ -2,26 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PipeSpawn : MonoBehaviour
 {
     int preState = 0;
+    public LineRenderer lineRenderer;
+    public GameObject StraightPipe,Bend15Pipe,Bend30Pipe,Bend45Pipe,Bend15PipeR,Bend30PipeR,Bend45PipeR;
 
-    public GameObject StraightPipe,Bend15Pipe,Bend30Pipe,Bend30PipeR,Bend45Pipe;
-    
-    void SpawnPipes(int amount) {
-        GameObject newPipe = Instantiate(StraightPipe);
-        newPipe.transform.name = "PipeStraight";
+    Vector3[] SpawnPipes(int amount) {
+        int amountOfPoints= 5+((amount)*4);
+        Vector3[] linePositions = new Vector3[amountOfPoints];
+        lineRenderer.positionCount = amountOfPoints;
+        Debug.Log("linePositions: "+ (linePositions.Length));
+        GameObject prePipe = Instantiate(StraightPipe);
+        prePipe.transform.name = "PipeStraight";
+
+        linePositions[0] = prePipe.transform.position;
+        linePositions[1] = prePipe.transform.Find("BendStart").position;
+        linePositions[2] = prePipe.transform.Find("BendMid").position;
+        linePositions[3] = prePipe.transform.Find("BendHead").position;
+        linePositions[4] = prePipe.transform.Find("Head").position;
+
         for (int i = 0; i < amount; i++)
         {
-            GameObject tempPipe = SpawnObject2(newPipe);
-            newPipe=tempPipe;
+            GameObject tempPipe = SpawnObject(prePipe);
+            prePipe=tempPipe;
+            Debug.Log("i"+(4*i));
+            linePositions[(4*i)+5] = prePipe.transform.Find("BendStart").position;
+            linePositions[(4*i)+6] = prePipe.transform.Find("BendMid").position;
+            linePositions[(4*i)+7] = prePipe.transform.Find("BendHead").position;
+            linePositions[(4*i)+8] = prePipe.transform.Find("Head").position;
         }
+        return linePositions;
     }  
      
-     GameObject SpawnObject2(GameObject preObject){
+     GameObject SpawnObject(GameObject preObject){
         //Get Head position from point
         Vector3 startPosition = preObject.transform.Find("Head").position;
         Vector3 WorldRotation = preObject.transform.rotation.eulerAngles;
+
 
         
         
@@ -29,7 +48,7 @@ public class PipeSpawn : MonoBehaviour
         /// Instantiate Pipes
         ////////////////////
 
-        GameObject newPipe = new GameObject();
+        GameObject newPipe = null;
         int number;
         if(preState == 1){
             number = Random.Range(1,6);
@@ -51,7 +70,7 @@ public class PipeSpawn : MonoBehaviour
                 newPipe.transform.name = "PipeBend15";
                 break;
             case 3:
-                newPipe = Instantiate(Bend15Pipe);
+                newPipe = Instantiate(Bend15PipeR);
                 newPipe.transform.position = startPosition;
                 newPipe.transform.name = "PipeBend15R";
                 break;
@@ -73,13 +92,14 @@ public class PipeSpawn : MonoBehaviour
                 newPipe.transform.name = "PipeBend45";
                 break;
             case 7:
-                newPipe = Instantiate(Bend45Pipe);
+                newPipe = Instantiate(Bend45PipeR);
                 newPipe.transform.position = startPosition;
                 newPipe.transform.name = "PipeBend45R";
                 break;
         }
 
         
+
         ////////////////////
         /// Rotatate Pipes
         ////////////////////
@@ -88,19 +108,19 @@ public class PipeSpawn : MonoBehaviour
         if(preObject.transform.name == "PipeBend15"){
             newPipe.transform.Rotate(WorldRotation + new Vector3(0,15,0), Space.World);
         }else if(preObject.transform.name == "PipeBend15R"){
-            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-15,0), Space.World);
+            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-15,-180), Space.World);
         }
         //Pipe 30
         else if(preObject.transform.name == "PipeBend30"){
             newPipe.transform.Rotate(WorldRotation + new Vector3(0,30,0), Space.World);
         }else if(preObject.transform.name == "PipeBend30R"){
-            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-30,0), Space.World);
+            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-30,-180), Space.World);
         }
         //Pipe 45
         else if(preObject.transform.name == "PipeBend45"){
             newPipe.transform.Rotate(WorldRotation + new Vector3(0,45,0), Space.World);
         }else if(preObject.transform.name == "PipeBend45R"){
-            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-45,0), Space.World);
+            newPipe.transform.Rotate(WorldRotation + new Vector3(0,-45,-180), Space.World);
         }
         //Pipe Straight
         else{
@@ -128,7 +148,9 @@ public class PipeSpawn : MonoBehaviour
 
     void Start()
     {
-        SpawnPipes(20);
+        Vector3[] LP = SpawnPipes(5);
+        lineRenderer.SetPositions(LP);
+        Debug.Log(LP);
     }
 
     // Update is called once per frame
