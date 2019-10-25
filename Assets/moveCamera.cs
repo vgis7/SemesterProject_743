@@ -6,6 +6,7 @@ using UnityEngine;
 public class moveCamera : MonoBehaviour
 {
     private Vector3 nextPostition;
+    public float speedOfCamera = 1f;
     private int i;
     Vector3[] positions;
     // Start is called before the first frame update
@@ -23,9 +24,16 @@ public class moveCamera : MonoBehaviour
                 i++;
                 nextPostition = positions[i];
             }
-            float step =  1.0f * Time.deltaTime; // calculate distance to move
+            float step =  (speedOfCamera + Random.Range(-0.1f,0.1f)) * Time.deltaTime; // calculate distance to move
+            Debug.Log("step: " + step);
+            Vector3 rotateTowards = Vector3.RotateTowards(transform.forward,(transform.position-nextPostition),step,0.0f);
             Vector3 moveTowards = Vector3.MoveTowards(transform.position ,nextPostition,step);
             transform.position = moveTowards;
+            
+            transform.rotation = Quaternion.LookRotation(rotateTowards);
+            Quaternion rotationNoise = Quaternion.Euler(speedOfCamera*Random.Range(-0.05f,0.05f),speedOfCamera*Random.Range(-0.05f,0.05f),speedOfCamera*Random.Range(-0.05f,0.05f));
+            transform.rotation *= rotationNoise;
+            
         }
     }
 

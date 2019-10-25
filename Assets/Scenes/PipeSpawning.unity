@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 163794796}
   - component: {fileID: 163794795}
   - component: {fileID: 163794794}
-  - component: {fileID: 163794797}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -170,9 +169,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 26.991467
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -197,26 +196,59 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163794793}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.020227436, y: 2.5740128, z: -0.40002245}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 919880102}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 600074188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &163794797
+--- !u!1 &600074186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600074188}
+  - component: {fileID: 600074187}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600074187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163794793}
+  m_GameObject: {fileID: 600074186}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 942393887a11344b590f652f03bad9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedOfCamera: 0.5
+--- !u!4 &600074188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600074186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 163794796}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &600142758
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,22 +280,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 600142761}
-  AmountOfPipes: 500
+  AmountOfPipes: 10
   StraightPipe: {fileID: 81515955767531912, guid: 58c68672e2c034f90ac554f710c2cad8,
     type: 3}
-  Bend15Pipe: {fileID: 5581961074709105497, guid: 805e9e3d160fe49bc9b47801526a063a,
+  Bend15Pipe: {fileID: 4852576709026563509, guid: 805e9e3d160fe49bc9b47801526a063a,
     type: 3}
   Bend30Pipe: {fileID: 4393474272952006374, guid: 407b3c6343eeb44b58855b6e75b8c843,
     type: 3}
   Bend45Pipe: {fileID: 3310159158704169827, guid: 87600f3a1de2c4be7a9f15642ce96806,
     type: 3}
-  Bend15PipeR: {fileID: 1725638862028822276, guid: eb5f9c5b5fe644308b7749d5166b78e5,
+  Bend15PipeR: {fileID: 4892525876468572226, guid: eb5f9c5b5fe644308b7749d5166b78e5,
     type: 3}
   Bend30PipeR: {fileID: 707540647181858272, guid: 2bfbf6a1a52484511a183a9c58034dca,
     type: 3}
   Bend45PipeR: {fileID: 1749548403582919359, guid: 575817d782d244e96afdbc3d1af3e1c9,
     type: 3}
-  MoveCamera: {fileID: 163794797}
+  MoveCamera: {fileID: 600074187}
 --- !u!4 &600142760
 Transform:
   m_ObjectHideFlags: 0
@@ -272,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600142758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.217072, y: 1.4045888, z: 3.8866687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -416,8 +448,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 1.38
+  m_Range: 17.1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

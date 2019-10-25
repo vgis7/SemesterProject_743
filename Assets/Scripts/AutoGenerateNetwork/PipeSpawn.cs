@@ -30,7 +30,8 @@ public class PipeSpawn : MonoBehaviour
         {
             GameObject tempPipe = SpawnObject(prePipe);
             prePipe=tempPipe;
-            Debug.Log("i"+(4*i));
+            Debug.Log(prePipe);
+            Debug.Log(linePositions[(4*i)+5]);
             linePositions[(4*i)+5] = prePipe.transform.Find("BendStart").position;
             linePositions[(4*i)+6] = prePipe.transform.Find("BendMid").position;
             linePositions[(4*i)+7] = prePipe.transform.Find("BendHead").position;
@@ -54,7 +55,7 @@ public class PipeSpawn : MonoBehaviour
         GameObject newPipe = null;
         int number;
         if(preState == 1){
-            number = Random.Range(1,6);
+            number = Random.Range(1,8);
         } else {
             number = 1;
         }
