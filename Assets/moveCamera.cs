@@ -16,8 +16,10 @@ public class moveCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
+    }
+
+    public void UpdateCameraMovement(){
         if (positions.Length != 0){
            
             if(transform.position == nextPostition){

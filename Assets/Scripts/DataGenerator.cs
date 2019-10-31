@@ -32,8 +32,11 @@ public class DataGenerator : MonoBehaviour{
 
         //Checks if pixel is black, to see if depth shader is activated yet. Bad way of to do it though.
         if(screenShot.GetPixel(0,0)==new Color(0,0,0,1)){
+            print("RESET");
             return false;
         }
+
+        //print("YAY GOT THROUGH");
 
         ///Continue Rendering
         data_camera.targetTexture = null;

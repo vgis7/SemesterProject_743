@@ -154,7 +154,6 @@ public class PipeSpawn : MonoBehaviour
     {
         Vector3[] LP = SpawnPipes(AmountOfPipes);
         lineRenderer.SetPositions(LP);
-        
         MoveCamera.moveTheCamera(LP);
         //Debug.Log(LP);
     }

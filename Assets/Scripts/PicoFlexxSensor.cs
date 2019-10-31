@@ -49,10 +49,12 @@ public class PicoFlexxSensor : MonoBehaviour{
             imageTaken = dataGenerator.GenerateImage(foundDefect);
         }
         if(imageTaken || unsureToLabelImageAsDefect == true) {
+            print("HERE");
             foundDefect = false;
             unsureToLabelImageAsDefect = false;
+            //transform.GetComponent<moveCamera>().UpdateCameraMovement();
             float walklength = 0.05f;
-            this.gameObject.transform.Translate(Vector3.left* walklength);
+            this.gameObject.transform.Translate(Vector3.back* walklength);
         }
     }
 

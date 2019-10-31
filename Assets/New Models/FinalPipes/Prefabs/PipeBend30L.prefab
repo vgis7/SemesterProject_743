@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64596645460975339}
   m_Layer: 0
-  m_Name: PipeBend30L 1
+  m_Name: PipeBend30L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,6 +155,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6735490159889347849
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5000845844478220938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -4218484216715825519, guid: e1a5672ebad984454b030a7de864d0e9, type: 3}
 --- !u!1001 &3911235378468848515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,8 +236,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: e1a5672ebad984454b030a7de864d0e9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: db9c5f72bc082504e986a1587318ed74, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1a5672ebad984454b030a7de864d0e9, type: 3}
+--- !u!1 &5000845844478220938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: e1a5672ebad984454b030a7de864d0e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3911235378468848515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8304016575355824281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e1a5672ebad984454b030a7de864d0e9,
