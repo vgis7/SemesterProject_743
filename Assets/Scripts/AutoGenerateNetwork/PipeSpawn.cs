@@ -30,8 +30,8 @@ public class PipeSpawn : MonoBehaviour
         {
             GameObject tempPipe = SpawnObject(prePipe);
             prePipe=tempPipe;
-            Debug.Log(prePipe);
-            Debug.Log(linePositions[(4*i)+5]);
+            ///Debug.Log(prePipe);
+            ///Debug.Log(linePositions[(4*i)+5]);
             linePositions[(4*i)+5] = prePipe.transform.Find("BendStart").position;
             linePositions[(4*i)+6] = prePipe.transform.Find("BendMid").position;
             linePositions[(4*i)+7] = prePipe.transform.Find("BendHead").position;
@@ -154,8 +154,9 @@ public class PipeSpawn : MonoBehaviour
     {
         Vector3[] LP = SpawnPipes(AmountOfPipes);
         lineRenderer.SetPositions(LP);
+        
         MoveCamera.moveTheCamera(LP);
-        Debug.Log(LP);
+        //Debug.Log(LP);
     }
 
     // Update is called once per frame

@@ -23,7 +23,7 @@ public class moveCamera : MonoBehaviour
             if(transform.position == nextPostition){
                 i++;
                 nextPostition = positions[i];
-            }
+            }   
             float step =  (speedOfCamera + Random.Range(-0.1f,0.1f)) * Time.deltaTime; // calculate distance to move
             Debug.Log("step: " + step);
             Vector3 rotateTowards = Vector3.RotateTowards(transform.forward,(transform.position-nextPostition),step,0.0f);
