@@ -12,6 +12,8 @@ public class PipeSpawn : MonoBehaviour
 
     public moveCamera MoveCamera;
 
+    public bool defect;
+
     Vector3[] SpawnPipes(int amount) {
         int amountOfPoints= 5+((amount)*4);
         Vector3[] linePositions = new Vector3[amountOfPoints];
@@ -130,6 +132,19 @@ public class PipeSpawn : MonoBehaviour
         else{
             newPipe.transform.Rotate(WorldRotation, Space.World);
         }
+
+        //int defect = Random.Range(0,2);
+        float rotationDisplacement = 0;
+        float translateDisplacement = 0;
+        if(defect){
+            rotationDisplacement = Random.Range(0f,0f);
+            translateDisplacement = Random.Range(0.05f,0.2f);
+        }   
+
+
+        newPipe.transform.Translate(new Vector3(0,0,-translateDisplacement),Space.Self);
+        //newPipe.transform.localPosition -= new Vector3(0,0,translateDisplacement);
+        //newPipe.transform.Rotate(transform.rotation.eulerAngles+new Vector3(0,rotationDisplacement,0));
 
         newPipe.transform.parent = transform.Find("PipeContainer");
 

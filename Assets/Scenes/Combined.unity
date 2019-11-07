@@ -390,6 +390,7 @@ MonoBehaviour:
   Bend45PipeR: {fileID: 1749548403582919359, guid: 575817d782d244e96afdbc3d1af3e1c9,
     type: 3}
   MoveCamera: {fileID: 1236646676}
+  defect: 1
 --- !u!4 &980814304
 Transform:
   m_ObjectHideFlags: 0
@@ -506,7 +507,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1724365472
 GameObject:
@@ -658,7 +659,7 @@ PrefabInstance:
     - target: {fileID: 5758135892167892224, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5758135892167892224, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
