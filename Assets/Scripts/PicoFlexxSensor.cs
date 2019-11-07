@@ -14,6 +14,8 @@ public class PicoFlexxSensor : MonoBehaviour{
 
     Vector3[] directions;
     bool unsureToLabelImageAsDefect;
+    
+    public GameObject rayCubeInitializer;
 
     void Start(){
         picoFlexCamera = this.transform.Find("Camera").GetComponent<Camera>();
@@ -35,9 +37,12 @@ public class PicoFlexxSensor : MonoBehaviour{
         Point[] points = GetRayHitPointStruct();
         float[] distance = GetDistanceFromPointStruct(points);
         directions = GetDirectionsFromPointStruct(points);
-        
+
+        rayCubeInitializer.SetActive(false); ///Disables the cube which used to initialize rays. Else a black circle will come.
+
         pointCloud.SetAllParticlesPositions(picoFlexCamera.transform.position,directions,distance);
         TakeScreenShotAndMoveCamera();
+        
     }
 
     /// <summary>

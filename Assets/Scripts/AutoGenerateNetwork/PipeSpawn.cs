@@ -131,22 +131,8 @@ public class PipeSpawn : MonoBehaviour
             newPipe.transform.Rotate(WorldRotation, Space.World);
         }
 
-        /*
-        if(preObject.transform.name == "PipeBend15"){
-                newPipe.transform.Rotate(WorldRotation + new Vector3(0,15,0), Space.World);
-        }
-        else if(preObject.transform.name == "PipeBend30"){
-                    newPipe.transform.Rotate(WorldRotation + new Vector3(0,30,0), Space.World);
-        }
-        else if(preObject.transform.name == "PipeBend45"){
-                    newPipe.transform.Rotate(WorldRotation + new Vector3(0,45,0), Space.World);
-            }    
-        else if(preObject.transform.name == "PipeBend30R"){
-                    newPipe.transform.Rotate(WorldRotation + new Vector3(0,-30,0), Space.World);
-        }       
-        else {
-        newPipe.transform.Rotate(WorldRotation, Space.World);
-        }*/
+        newPipe.transform.parent = transform.Find("PipeContainer");
+
         return newPipe;
     }
 
@@ -155,7 +141,6 @@ public class PipeSpawn : MonoBehaviour
         Vector3[] LP = SpawnPipes(AmountOfPipes);
         lineRenderer.SetPositions(LP);
         MoveCamera.moveTheCamera(LP);
-        //Debug.Log(LP);
     }
 
     // Update is called once per frame
