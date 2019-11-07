@@ -21,12 +21,12 @@ public class PicoFlexxSensor : MonoBehaviour{
         foundDefect = false;
         directions = null;
         unsureToLabelImageAsDefect = true;
-        
     }
 
     public struct Point{
         public Vector3 direction;
         public float distance;
+        
     }
 
     void Update(){
@@ -49,12 +49,12 @@ public class PicoFlexxSensor : MonoBehaviour{
             imageTaken = dataGenerator.GenerateImage(foundDefect);
         }
         if(imageTaken || unsureToLabelImageAsDefect == true) {
-            print("HERE");
             foundDefect = false;
             unsureToLabelImageAsDefect = false;
             //transform.GetComponent<moveCamera>().UpdateCameraMovement();
+            this.transform.GetComponent<moveCamera>().UpdateCameraMovement();
             float walklength = 0.05f;
-            this.gameObject.transform.Translate(Vector3.back* walklength);
+            //this.gameObject.transform.Translate(Vector3.forward* walklength);
         }
     }
 
@@ -65,7 +65,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         int indexCounter = 0;
         for(int y = 0; y<sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers;y++){
             for(int x = 0; x<sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers;x++){
-                rayArray[indexCounter] = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.pixelsEachRayCovers,y*sceneSettings.pixelsEachRayCovers,0));
+                rayArray[indexCounter] = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.pixelsEachRayCovers,y*sceneSettings.pixelsEachRayCovers,-0.5f));
                 indexCounter++;
             }
         }
@@ -87,7 +87,7 @@ public class PicoFlexxSensor : MonoBehaviour{
                 }
                 ///Saves the position of each ray hit
                 hitPositions[i] = hit.point;
-                ///Debug.DrawRay(rayArray[i]. ,rayArray[i].direction*2,Color.red); ///DEBUG RAY
+                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*2,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 hitPositions[i] = new Vector3(0,-10,0);
@@ -100,6 +100,7 @@ public class PicoFlexxSensor : MonoBehaviour{
         Point[] points = new Point[rayArray.Length];
 
         RaycastHit hit;
+
         for(int i = 0; i < rayArray.Length;i++){
             if(Physics.Raycast(rayArray[i],out hit,4)){
                 ///Checks for tag named defect
@@ -113,7 +114,7 @@ public class PicoFlexxSensor : MonoBehaviour{
                 ///Checks if pixel includes defect
                 float defectAmount = CheckIfPixelDefectAtHitUVCoordinate(hit);
                 points[i].distance = hit.distance + defectAmount;
-                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*2,Color.red); ///DEBUG RAY
+                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*1,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 points[i].direction = new Vector3(0,0,0);

@@ -553,7 +553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4469308215667025799}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0780985, y: 1.087595, z: 5.2794666}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4469308215943643053}
@@ -944,13 +944,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4469308215943643048}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 4469308215667025798}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!20 &4469308215943643054
 Camera:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de45711998642d94f95ab23e0a8f84ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picoFlexxTransform: {fileID: 4469308217419430603}
+  picoFlexxTransform: {fileID: 4469308216298592077}
 --- !u!1 &4469308215967298620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,13 +1513,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4469308216298592072}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 4469308217419430603}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!20 &4469308216298592078
 Camera:
   m_ObjectHideFlags: 0
@@ -7282,6 +7282,7 @@ GameObject:
   - component: {fileID: 4469308217419430601}
   - component: {fileID: 4469308217419430600}
   - component: {fileID: 4469308217419430602}
+  - component: {fileID: 1236646676}
   m_Layer: 0
   m_Name: PicoFlexx
   m_TagString: Untagged
@@ -7345,6 +7346,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneSettings: {fileID: 4469308217621743904}
   pointCloud: {fileID: 4469308215667025797}
+--- !u!114 &1236646676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469308217419430615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942393887a11344b590f652f03bad9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedOfCamera: 100
 --- !u!1 &4469308217542579139
 GameObject:
   m_ObjectHideFlags: 0
