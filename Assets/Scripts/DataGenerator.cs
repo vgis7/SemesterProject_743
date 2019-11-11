@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DataGenerator : MonoBehaviour{
-    private int incrementImageID;
     SceneSettings sceneSettings;
     public Camera data_camera;
     public Camera UI_camera;
@@ -11,8 +10,7 @@ public class DataGenerator : MonoBehaviour{
     public int numberOfImagesFine, numberOfImagesDefect;
 
     void Start(){
-        incrementImageID = 0;
-        sceneSettings = this.transform.GetComponent<SceneSettings>();   
+        sceneSettings = this.transform.GetComponent<SceneSettings>();
     }
 
     /// <summary>
@@ -35,8 +33,6 @@ public class DataGenerator : MonoBehaviour{
             return false;
         }
 
-        //print("YAY GOT THROUGH");
-
         ///Continue Rendering
         data_camera.targetTexture = null;
         RenderTexture.active = null; 
@@ -48,8 +44,8 @@ public class DataGenerator : MonoBehaviour{
         if (path == "Done") { return true; }; ///Returns true, if the desired number of images has been created already.
 
         ///Write Image to path
-        System.IO.File.WriteAllBytes(path + "/screenshot"+incrementImageID+".png", bytes);
-        incrementImageID++;
+        int imageID = System.IO.Directory.GetFiles(path).Length+1;
+        System.IO.File.WriteAllBytes(path + "/screenshot"+imageID+".png", bytes);
         return true;
     }
 

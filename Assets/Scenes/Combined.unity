@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &72499497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4469308217621743910, guid: 346a44b5186c3b146b643a1efef747c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4469308216958098523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81acab0b086f5c041af80be24032dacd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &287163326
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +402,7 @@ MonoBehaviour:
   Bend45PipeR: {fileID: 1749548403582919359, guid: 575817d782d244e96afdbc3d1af3e1c9,
     type: 3}
   MoveCamera: {fileID: 1236646676}
-  defect: 1
+  defect: 0
 --- !u!4 &980814304
 Transform:
   m_ObjectHideFlags: 0
@@ -613,14 +625,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PicoFlexx
       objectReference: {fileID: 0}
-    - target: {fileID: 1236646676, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1236646676, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
-      propertyPath: speedOfCamera
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5758135892167892224, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -675,6 +679,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236646676, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236646676, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
+      propertyPath: speedOfCamera
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4469308216953147496, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
@@ -756,5 +768,45 @@ PrefabInstance:
       propertyPath: rayCubeInitializer
       value: 
       objectReference: {fileID: 1724365472}
+    - target: {fileID: 4469308217621743910, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 72499497}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
