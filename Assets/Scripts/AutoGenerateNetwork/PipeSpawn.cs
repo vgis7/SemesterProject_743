@@ -10,6 +10,8 @@ public class PipeSpawn : MonoBehaviour
     public int AmountOfPipes = 10;
     public GameObject StraightPipe,Bend15Pipe,Bend30Pipe,Bend45Pipe,Bend15PipeR,Bend30PipeR,Bend45PipeR;
 
+    public GameObject[] rubberDefects;
+
     public moveCamera MoveCamera;
 
     public bool defect;
@@ -137,10 +139,13 @@ public class PipeSpawn : MonoBehaviour
         float rotationDisplacement = 0;
         float translateDisplacement = 0;
         if(defect){
-            rotationDisplacement = Random.Range(0f,0f);
-            translateDisplacement = Random.Range(0.05f,0.2f);
-        }   
-
+            int randomInt = Random.Range(0,5);
+            //if(randomInt == 4){
+                //rotationDisplacement = Random.Range(0f,0f);
+                translateDisplacement = Random.Range(0.05f,0.2f);
+                CreateRubberDefect(newPipe.transform);
+            //}
+        }
 
         newPipe.transform.Translate(new Vector3(0,0,-translateDisplacement),Space.Self);
         //newPipe.transform.localPosition -= new Vector3(0,0,translateDisplacement);
@@ -158,9 +163,18 @@ public class PipeSpawn : MonoBehaviour
         MoveCamera.moveTheCamera(LP);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    private void CreateRubberDefect(Transform transformOfNewPipe){
+        int randomInt = Random.Range(0,5);
+        GameObject newRubberDefect = Instantiate(rubberDefects[randomInt]);
+        
+        newRubberDefect.transform.position = transformOfNewPipe.position;
+
+        newRubberDefect.transform.rotation = transformOfNewPipe.rotation;
+        float randomRotation = Random.Range(0f,100f);
+        newRubberDefect.transform.Rotate(new Vector3(90,0,0));
+
+        newRubberDefect.transform.parent = transformOfNewPipe;
         
     }
+
 }

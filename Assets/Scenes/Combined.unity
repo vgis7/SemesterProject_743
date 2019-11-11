@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 980814302}
-  AmountOfPipes: 10
+  AmountOfPipes: 30
   StraightPipe: {fileID: 81515955767531912, guid: 58c68672e2c034f90ac554f710c2cad8,
     type: 3}
   Bend15Pipe: {fileID: 4852576709026563509, guid: 805e9e3d160fe49bc9b47801526a063a,
@@ -401,8 +401,14 @@ MonoBehaviour:
     type: 3}
   Bend45PipeR: {fileID: 1749548403582919359, guid: 575817d782d244e96afdbc3d1af3e1c9,
     type: 3}
+  rubberDefects:
+  - {fileID: 2214327848937781339, guid: 0be3a0e44709b0e4982dd1ba291ab775, type: 3}
+  - {fileID: 3435052968715335377, guid: c7776148117bf9d4d9e35c11223eaab6, type: 3}
+  - {fileID: 584400899278963656, guid: 7907bbf0722295940bc08243d506188f, type: 3}
+  - {fileID: 658853072569449607, guid: 2f2111c5d10de3241a8cb705d9bac504, type: 3}
+  - {fileID: 6791972879025716846, guid: f3cafbb6f1fbc12468c943132e69ac14, type: 3}
   MoveCamera: {fileID: 1236646676}
-  defect: 0
+  defect: 1
 --- !u!4 &980814304
 Transform:
   m_ObjectHideFlags: 0
@@ -625,6 +631,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PicoFlexx
       objectReference: {fileID: 0}
+    - target: {fileID: 4469308217621743910, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5758135892167892224, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -768,11 +779,6 @@ PrefabInstance:
       propertyPath: rayCubeInitializer
       value: 
       objectReference: {fileID: 1724365472}
-    - target: {fileID: 4469308217621743910, guid: 346a44b5186c3b146b643a1efef747c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4469308215578063811, guid: 346a44b5186c3b146b643a1efef747c4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
