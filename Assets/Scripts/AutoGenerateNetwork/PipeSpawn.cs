@@ -171,7 +171,8 @@ public class PipeSpawn : MonoBehaviour
 
         newRubberDefect.transform.rotation = transformOfNewPipe.rotation;
         float randomRotation = Random.Range(0f,100f);
-        newRubberDefect.transform.Rotate(new Vector3(90,0,0));
+        newRubberDefect.transform.Rotate(new Vector3(90,0,0),Space.Self);
+        newRubberDefect.transform.Rotate(new Vector3(0,randomRotation,0),Space.Self);
 
         newRubberDefect.transform.parent = transformOfNewPipe;
         
