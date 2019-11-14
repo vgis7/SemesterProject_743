@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 980814302}
-  AmountOfPipes: 30
+  AmountOfPipes: 100
   StraightPipe: {fileID: 81515955767531912, guid: 58c68672e2c034f90ac554f710c2cad8,
     type: 3}
   Bend15Pipe: {fileID: 4852576709026563509, guid: 805e9e3d160fe49bc9b47801526a063a,
@@ -813,6 +813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215667025798, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
