@@ -37,7 +37,7 @@ public class DataGenerator : MonoBehaviour{
         data_camera.targetTexture = null;
         RenderTexture.active = null; 
         Destroy(renderTexture);
-        byte[] bytes = screenShot.EncodeToPNG();
+        byte[] bytes = screenShot.EncodeToJPG();
 
         ///Obtain Path
         string path = ObtainPathDependingOnFoundDefect(foundDefect);
@@ -45,7 +45,7 @@ public class DataGenerator : MonoBehaviour{
 
         ///Write Image to path
         int imageID = System.IO.Directory.GetFiles(path).Length+1;
-        System.IO.File.WriteAllBytes(path + "/screenshot"+imageID+".png", bytes);
+        System.IO.File.WriteAllBytes(path + "/screenshot"+imageID+".jpg", bytes);
         return true;
     }
 

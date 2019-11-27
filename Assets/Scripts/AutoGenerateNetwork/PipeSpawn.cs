@@ -49,7 +49,6 @@ public class PipeSpawn : MonoBehaviour
         Vector3 startPosition = preObject.transform.Find("Head").position;
         Vector3 WorldRotation = preObject.transform.rotation.eulerAngles;
 
-
         
         
         ////////////////////
