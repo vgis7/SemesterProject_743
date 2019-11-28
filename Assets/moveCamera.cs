@@ -32,6 +32,7 @@ public class moveCamera : MonoBehaviour{
 
     public void UpdateCameraMovement(){
         if(gotPositions!=true){return; }
+
         if (positions.Length != 0){
            
             if(transform.position == nextPostition){

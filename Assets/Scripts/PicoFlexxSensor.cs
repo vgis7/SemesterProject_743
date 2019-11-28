@@ -26,16 +26,20 @@ public class PicoFlexxSensor : MonoBehaviour{
     }
 
     public struct Point{
+        public Vector2 position;
         public Vector3 direction;
         public float distance;
-        
     }
 
     void Update(){
-        CastRays();
+        Point[] points = CastRays();
         //pointCloud.SetAllParticlesPositions(GetRayHitPositions()); ///Sends the ray hit positions towards the point cloud, that transforms the position of each particle inside the pointcloud to these hit positions.
-        Point[] points = GetRayHitPointStruct();
+        //Point[] points = GetRayHitPointStruct();
+        points = GetRayHitPointStruct(points);
         float[] distance = GetDistanceFromPointStruct(points);
+        
+        DepthArrayToCSV.ConvertArrayToCSV(points);
+
         directions = GetDirectionsFromPointStruct(points);
 
         rayCubeInitializer.SetActive(false); ///Disables the cube which used to initialize rays. Else a black circle will come.
@@ -66,14 +70,17 @@ public class PicoFlexxSensor : MonoBehaviour{
     /// <summary>
     /// Casts rays towards screen points and returns the rays. The screen points are based upon the stride (CHANGE COMMENT)
     /// </summary>
-    private void CastRays(){
+    private Point[] CastRays(){
+        Point[] points = new Point[rayArray.Length];
         int indexCounter = 0;
         for(int y = 0; y<sceneSettings.imageHeight/sceneSettings.pixelsEachRayCovers;y++){
             for(int x = 0; x<sceneSettings.imageWidth/sceneSettings.pixelsEachRayCovers;x++){
                 rayArray[indexCounter] = picoFlexCamera.ScreenPointToRay(new Vector3(x*sceneSettings.pixelsEachRayCovers,y*sceneSettings.pixelsEachRayCovers,-0.5f));
+                points[indexCounter].position = new Vector2(x,y);
                 indexCounter++;
             }
         }
+        return points;
     }
 
     /// <summary>
@@ -101,9 +108,9 @@ public class PicoFlexxSensor : MonoBehaviour{
         return hitPositions;
     }
 
-    Point[] GetRayHitPointStruct(){
-        Point[] points = new Point[rayArray.Length];
 
+
+    Point[] GetRayHitPointStruct(Point[] points){
         RaycastHit hit;
 
         for(int i = 0; i < rayArray.Length;i++){
@@ -119,12 +126,17 @@ public class PicoFlexxSensor : MonoBehaviour{
                 ///Checks if pixel includes defect
                 float defectAmount = CheckIfPixelDefectAtHitUVCoordinate(hit);
                 points[i].distance = hit.distance + defectAmount;
+          
+             
+                
+
                 //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*1,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 points[i].direction = new Vector3(0,0,0);
             }
         }
+
         return points;
     }
 
