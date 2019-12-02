@@ -39,6 +39,7 @@ public class moveCamera : MonoBehaviour{
                 i++;
                 nextPostition = positions[i];
             }   
+            
 
             float step =  (speedOfCamera + Random.Range(-0.1f,0.1f)) * Time.deltaTime; // calculate distance to move
             Vector3 moveTowards = Vector3.MoveTowards(transform.position ,nextPostition,step);
@@ -46,10 +47,10 @@ public class moveCamera : MonoBehaviour{
             
             //Vector3 rotateTowards = Vector3.RotateTowards(transform.forward,(nextPostition),step,0.0f);
             //transform.rotation = Quaternion.LookRotation(rotateTowards);
-            float rotationSpeed = 10;
-            transform.LookAt(nextPostition);
-            Quaternion rotationNoise = Quaternion.Euler(rotationSpeed*Random.Range(-0.2f,0.2f),rotationSpeed*Random.Range(-0.2f,0.2f),rotationSpeed*Random.Range(-0.2f,0.2f));
-            transform.rotation *= rotationNoise;
+            //float rotationSpeed = 10;
+            //transform.LookAt(nextPostition);
+            //Quaternion rotationNoise = Quaternion.Euler(rotationSpeed*Random.Range(-0.2f,0.2f),rotationSpeed*Random.Range(-0.2f,0.2f),rotationSpeed*Random.Range(-0.2f,0.2f));
+            //transform.rotation *= rotationNoise;
             
         }
     }

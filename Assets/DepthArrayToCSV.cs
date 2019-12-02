@@ -23,10 +23,12 @@ public static class DepthArrayToCSV{
             for(int i = 0; i<pointList.Count;i++){
                 PicoFlexxSensor.Point point = pointList[i];
 
-                Vector2 position = point.position;
+                //point.normal;
+                //Vector2 position = point.position;
+                Vector3 impactPoint = point.impactPoint;
                 float distance = point.distance;
 
-                file.WriteLine(position.x/1000+", "+position.y/1000+", "+distance);
+                file.WriteLine(impactPoint.x+", "+impactPoint.y+", "+distance);
             }
         }
         csvCounter++;

@@ -29,6 +29,8 @@ public class PicoFlexxSensor : MonoBehaviour{
         public Vector2 position;
         public Vector3 direction;
         public float distance;
+        public Vector3 impactPoint;
+        public Vector3 normal;
     }
 
     void Update(){
@@ -127,7 +129,10 @@ public class PicoFlexxSensor : MonoBehaviour{
                 float defectAmount = CheckIfPixelDefectAtHitUVCoordinate(hit);
                 points[i].distance = hit.distance + defectAmount;
           
-             
+                ///ImpactPoint save to point
+                points[i].impactPoint = hit.point;
+
+                points[i].normal = hit.normal;
                 
 
                 //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*1,Color.red); ///DEBUG RAY

@@ -31,7 +31,7 @@ public class ScenarioAndGlobalParametersSDR : MonoBehaviour{
 
             case 1:
                 print("Straight Sewer (Many Defects)");
-                SetGlobalParameters(140, 15f,75f);
+                SetGlobalParameters(140, 15f,0f);
                 break;
         }
     }
