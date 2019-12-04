@@ -19,14 +19,10 @@ public class ContextualSplineSDR : StructuredDomainRandomization
         this.controlPoints = controlPoints;
         this.contextIsDefect = contextIsDefect;
         this.defectProbability = defectProbability;
-    }
 
-    void Start(){
         Random.seed = (int)System.DateTime.Now.Ticks;
         CreateObjects();
     }
-
-
 
     ///////////////////////
     // Objects

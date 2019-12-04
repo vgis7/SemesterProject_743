@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class ScenarioSDR : StructuredDomainRandomization{
 
-    void Start(){
+    private void Start(){
         GenerateScenario();
     }
+
+    [SerializeField]
+    private string nameOfScenario;
+    [SerializeField]
+    private int numberOfControlPoints;
+    [SerializeField]
+    private float turnProbability;
+    [SerializeField]
+    private float defectProbability;
 
     ////////////////////
     //Scenario
@@ -16,18 +25,30 @@ public class ScenarioSDR : StructuredDomainRandomization{
     /// Uniform distribution for selecting a scenario
     /// </summary>
     private void GenerateScenario(){
-        int scenario = Random.Range(0,2);
+        int scenario = Random.Range(0,3);
         switch(scenario) {
             case 0:
-                print("Straight Sewer (No Defects)");
-                transform.GetComponent<GlobalParametersSDR>().SetGlobalParameters(140, 15f, 0f);
+                nameOfScenario = "Straight Sewer (No Defects)";
+                numberOfControlPoints = 140;
+                turnProbability = 15f;
+                defectProbability = 60f;
                 break;
 
             case 1:
-                print("Straight Sewer (Many Defects)");
-                transform.GetComponent<GlobalParametersSDR>().SetGlobalParameters(140, 15f, 0f);
+                nameOfScenario = "Straight Sewer (No Defects)";
+                numberOfControlPoints = 140;
+                turnProbability = 15f;
+                defectProbability = 60f;
+                break;
+            case 2:
+                nameOfScenario = "Straight Sewer (No Defects)";
+                numberOfControlPoints = 140;
+                turnProbability = 15f;
+                defectProbability = 60f;
                 break;
         }
+
+        transform.GetComponent<GlobalParametersSDR>().SetGlobalParameters(numberOfControlPoints, turnProbability, defectProbability);
     }
 
 }

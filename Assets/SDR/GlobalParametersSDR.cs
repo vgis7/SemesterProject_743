@@ -18,7 +18,7 @@ public class GlobalParametersSDR : StructuredDomainRandomization{
 
         //Defect
         if (defectProbability > 0) {
-            CreateContextualSpline(numberOfControlPoints, controlPoints, 0f, true, defectProbability);
+            CreateContextualSpline(numberOfControlPoints, controlPoints, 0.2f, true, defectProbability);
         }
     }
 
@@ -36,7 +36,7 @@ public class GlobalParametersSDR : StructuredDomainRandomization{
         Random.seed = (int)System.DateTime.Now.Ticks;
 
         for (int i = 0; i < numberOfControlPoints; i++) {
-            lineRenderer.SetPosition(i, controlPoints[i].position);
+            lineRenderer.SetPosition(i, controlPoints[i].position+new Vector3(0,amountOffset,0));
         }
     }
 
@@ -82,7 +82,7 @@ public class GlobalParametersSDR : StructuredDomainRandomization{
         if (randomValue > turnProbability) {
             newPipe = Instantiate(pipeModels[0]);
         } else {
-            int randomSelectTurnPipe = Random.Range(0, 6);
+            int randomSelectTurnPipe = Random.Range(1, 7);
             newPipe = Instantiate(pipeModels[randomSelectTurnPipe]);
         }
 
