@@ -1242,6 +1242,46 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4469308215943643054, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_SensorSize.x
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215943643054, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_SensorSize.y
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215943643054, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: field of view
+      value: 38.519997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308215943643054, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_GateFitMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308216298592078, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_SensorSize.x
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308216298592078, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_SensorSize.y
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308216298592078, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: field of view
+      value: 38.519997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469308216298592078, guid: 346a44b5186c3b146b643a1efef747c4,
+        type: 3}
+      propertyPath: m_GateFitMode
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4469308217419430601, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}
     - {fileID: 4469308217419430602, guid: 346a44b5186c3b146b643a1efef747c4, type: 3}

@@ -11,6 +11,7 @@ public class PicoFlexxSensor : MonoBehaviour{
 
     bool foundDefect;
     public DataGenerator dataGenerator;
+    public bool activateGenerateCSV;
 
     Vector3[] directions;
     bool unsureToLabelImageAsDefect;
@@ -39,8 +40,8 @@ public class PicoFlexxSensor : MonoBehaviour{
         //Point[] points = GetRayHitPointStruct();
         points = GetRayHitPointStruct(points);
         float[] distance = GetDistanceFromPointStruct(points);
-        
-        DepthArrayToCSV.ConvertArrayToCSV(points);
+
+        GeneratorCSV(points);
 
         directions = GetDirectionsFromPointStruct(points);
 
@@ -49,6 +50,12 @@ public class PicoFlexxSensor : MonoBehaviour{
         pointCloud.SetAllParticlesPositions(picoFlexCamera.transform.position,directions,distance);
         TakeScreenShotAndMoveCamera();
         
+    }
+
+    private void GeneratorCSV(Point[] points){
+        if(activateGenerateCSV){
+            DepthArrayToCSV.ConvertArrayToCSV(points);
+        }
     }
 
     /// <summary>
