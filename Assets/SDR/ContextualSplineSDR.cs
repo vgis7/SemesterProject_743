@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContextualSplineSDR : MonoBehaviour{
+public class ContextualSplineSDR : StructuredDomainRandomization
+{
 
     public int numberOfControlPoints;
-    public ScenarioAndGlobalParametersSDR.ControlPoint[] controlPoints;
+    public ControlPoint[] controlPoints;
     public bool contextIsDefect;
     public float defectProbability;
 
@@ -13,19 +14,15 @@ public class ContextualSplineSDR : MonoBehaviour{
     public GameObject[] defectRubberRings;
 
 
-    public void Setup(int numberOfControlPoints, ScenarioAndGlobalParametersSDR.ControlPoint[] controlPoints, bool contextIsDefect, float defectProbability){
+    public void Setup(int numberOfControlPoints, ControlPoint[] controlPoints, bool contextIsDefect, float defectProbability){
         this.numberOfControlPoints = numberOfControlPoints;
         this.controlPoints = controlPoints;
         this.contextIsDefect = contextIsDefect;
         this.defectProbability = defectProbability;
-    }
 
-    void Start(){
         Random.seed = (int)System.DateTime.Now.Ticks;
         CreateObjects();
     }
-
-
 
     ///////////////////////
     // Objects
@@ -61,6 +58,10 @@ public class ContextualSplineSDR : MonoBehaviour{
         for (int i = 0; i < numberOfControlPoints; i++) {
             if (controlPoints[i].pipe != null) {
                 GameObject newGameObject = Instantiate(controlPoints[i].pipe);
+                newGameObject.transform.parent = this.transform.Find("Objects");
+            }
+            if (controlPoints[i].endBlock != null) {
+                GameObject newGameObject = Instantiate(controlPoints[i].endBlock);
                 newGameObject.transform.parent = this.transform.Find("Objects");
             }
         }
