@@ -31,20 +31,20 @@ public class ScenarioSDR : StructuredDomainRandomization{
                 nameOfScenario = "Straight Sewer (No Defects)";
                 numberOfControlPoints = 140;
                 turnProbability = 15f;
-                defectProbability = 60f;
+                defectProbability = 0;
                 break;
 
             case 1:
                 nameOfScenario = "Straight Sewer (No Defects)";
                 numberOfControlPoints = 140;
                 turnProbability = 15f;
-                defectProbability = 60f;
+                defectProbability = 0;
                 break;
             case 2:
                 nameOfScenario = "Straight Sewer (No Defects)";
                 numberOfControlPoints = 140;
                 turnProbability = 15f;
-                defectProbability = 60f;
+                defectProbability = 0;
                 break;
         }
 
