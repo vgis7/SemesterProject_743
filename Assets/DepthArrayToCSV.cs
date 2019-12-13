@@ -19,8 +19,8 @@ public static class DepthArrayToCSV{
                 pointList.Add(point);
             }
         }
-
-        string path = string.Format("C:\\Users\\Kasper\\Desktop\\CSV\\csv{0}.csv",csvCounter);
+        //C:\Users\schon\Desktop\CSV
+        string path = string.Format("C:\\Users\\schon\\Desktop\\CSV\\csv{0}.csv",csvCounter);
         using(System.IO.StreamWriter file = new System.IO.StreamWriter(path,true)){
             for(int i = 0; i<pointList.Count;i++){
                 PicoFlexxSensor.Point point = pointList[i];

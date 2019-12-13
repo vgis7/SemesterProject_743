@@ -90,9 +90,9 @@ public class PicoFlexxSensor : MonoBehaviour{
             }
         }
 
-        picoFlexCamera.fieldOfView = 62;
-        picoFlexCamera.focalLength = 3.994271f;
-        picoFlexCamera.gateFit = Camera.GateFitMode.Horizontal;
+        //picoFlexCamera.fieldOfView = 62;
+        //picoFlexCamera.focalLength = 3.994271f;
+        //picoFlexCamera.gateFit = Camera.GateFitMode.Horizontal;
         return points;
     }
 
