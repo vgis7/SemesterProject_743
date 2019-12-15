@@ -23,6 +23,7 @@ Shader "Custom/Depth"{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex); // Equal to: mul(UNITY_MATRIX_MVP, v.vertex);
 				o.depth = -UnityObjectToViewPos(v.vertex).z*_ProjectionParams.w; //Eual to: o.depth = -mul(UNITY_MATRIX_MV, v.vertex).z*_ProjectionParams.w;
+				//o.depth = -UnityObjectToViewPos(v.vertex).z*_ProjectionParams.w; //Eual to: o.depth = -mul(UNITY_MATRIX_MV, v.vertex).z*_ProjectionParams.w;
 				return o;
 			}
 				
@@ -31,8 +32,8 @@ Shader "Custom/Depth"{
 				fixed4 colorRed = fixed4(1, 0, 0, 1);
 				fixed4 colorGreen = fixed4(0, 1, 0, 1);
 				fixed4 colorBlue = fixed4(0, 0, 1, 1);
-				float middle = 0.6;
-				fixed4 mixedColor = lerp(colorBlue, colorGreen, middle/invertDepth)*step(invertDepth, middle);
+				float middle = 0.5;
+				fixed4 mixedColor = lerp(colorBlue, colorGreen, invertDepth/middle)*step(invertDepth, middle);
 				mixedColor += lerp(colorGreen, colorRed, (invertDepth - middle) / (1 - middle))*step(middle, invertDepth);
 				mixedColor.a = 1;
 
