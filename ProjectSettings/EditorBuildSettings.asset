@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Pico Flexx.unity
-    guid: 10ee4738d569f1f4fa268fa206634adb
+    path: Assets/Scenes/Combined.unity
+    guid: 470f7839ae8c3b14f91b9ea6ded0d3e0
   m_configObjects: {}

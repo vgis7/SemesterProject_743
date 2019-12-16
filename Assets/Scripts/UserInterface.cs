@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
 
 public class UserInterface : MonoBehaviour{
     public GameObject simulationManager;
@@ -107,7 +112,12 @@ public class UserInterface : MonoBehaviour{
     /// The path from the chosen directory, will be saved in SceneSettings(Manager).
     /// </summary>
     public void ButtonSetDirectory(){
-        directory_path = EditorUtility.OpenFolderPanel("Set Directory",directory_path,"");
+        #if UNITY_EDITOR
+            EditorUtility.InstanceIDToObject(0);
+            directory_path = EditorUtility.OpenFolderPanel("Set Directory",directory_path,"");
+        #endif
+        
+        //sdirectory_path = EditorUtility.OpenFolderPanel("Set Directory",directory_path,"");
         Directory.CreateDirectory(directory_path+"/Fine");
         Directory.CreateDirectory(directory_path+"/Defect");
         sceneSettings.directory_path = directory_path;

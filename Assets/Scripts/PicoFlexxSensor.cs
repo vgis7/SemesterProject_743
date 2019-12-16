@@ -146,7 +146,7 @@ public class PicoFlexxSensor : MonoBehaviour{
                 points[i].normal = hit.normal;
                 
 
-                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*1,Color.red); ///DEBUG RAY
+                //Debug.DrawRay(rayArray[i].origin,rayArray[i].direction*hit.distance,Color.red); ///DEBUG RAY
             } else {
                 ///Move particles out of the screen, if a ray has not hit.
                 points[i].direction = new Vector3(0,0,0);

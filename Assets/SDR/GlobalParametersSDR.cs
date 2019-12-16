@@ -64,7 +64,6 @@ public class GlobalParametersSDR : StructuredDomainRandomization{
             Destroy(newPipe);
 
             if(i == numberOfPipes-1){
-                print("got here");
                 blockCamera.transform.position = controlPoints[(4 * i) + 3].position;
                 blockCamera.transform.LookAt(controlPoints[(4 * i) + 2].position);
                 controlPoints[(4 * i) + 3].endBlock = blockCamera;
